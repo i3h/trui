@@ -21,7 +21,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log("hello");
-    this.dataService.getIPInfo("1.1.1.1").subscribe(res => {
+
+    let data = {
+      jsonrpc: 2.0,
+      method: "hello",
+      params: ["hello json-rpc"],
+      id: 1
+    };
+    let rpcData = JSON.stringify(data);
+    this.dataService.testRpc(rpcData).subscribe(res => {
       console.log(res);
     });
   }

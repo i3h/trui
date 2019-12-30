@@ -10,9 +10,9 @@ import { GlobalService } from "./global.service";
 export class DataService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  getIPInfo(ip): Observable<any> {
-    let url = this.globalService.API_ENDPOINT + ip;
-    return this.http.get(url).pipe(
+  testRpc(data: string): Observable<any> {
+    let url = this.globalService.API_ENDPOINT;
+    return this.http.post(url, data).pipe(
       map((res: Response) => {
         return res;
       }),
