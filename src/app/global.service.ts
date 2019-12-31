@@ -6,5 +6,5 @@ import { Injectable } from "@angular/core";
 export class GlobalService {
   constructor() {}
 
-  API_ENDPOINT: string = "http://api.seedbox.app";
+  API_ENDPOINT: string = "http://seedbox/transmission/rpc";
 }

@@ -20,12 +20,12 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("hello");
-
     let data = {
-      jsonrpc: 2.0,
-      method: "hello",
-      params: ["hello json-rpc"],
+      jsonrpc: "2.0",
+      method: "torrent-get",
+      arguments: {
+        fields: ["addedDate"]
+      },
       id: 1
     };
     let rpcData = JSON.stringify(data);
