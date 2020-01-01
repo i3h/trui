@@ -11,6 +11,7 @@ import { DataService } from "../data.service";
 export class ListComponent implements OnInit {
   @Input() torrents: any;
   checkedAll: boolean;
+  checkedList: string[] = [];
 
   constructor(
     private router: Router,
@@ -100,6 +101,58 @@ export class ListComponent implements OnInit {
     }
   }
 
+  setCheckedStatus() {
+    for (let i = 0; i < this.torrents.length; i++) {
+      if (this.checkedList.includes(this.torrents[i].hashString)) {
+        this.torrents[i].checked = true;
+      } else {
+        this.torrents[i].checked = false;
+      }
+    }
+  }
+
+  clickTorrent(el: any) {
+    if (el.checked) {
+      el.checked = false;
+      this.checkedList = this.removeHash(this.checkedList, el.hashString);
+    } else {
+      el.checked = true;
+      this.checkedList = this.addHash(this.checkedList, el.hashString);
+    }
+  }
+
+  addHash(list: string[], hash: string) {
+    let index = list.indexOf(hash);
+    if (index == -1) list.push(hash);
+    return list;
+  }
+
+  removeHash(list: string[], hash: string) {
+    let index = list.indexOf(hash);
+    if (index !== -1) list.splice(index, 1);
+    return list;
+  }
+
+  checkAll() {
+    if (this.checkedAll) {
+      for (let i = 0; i < this.torrents.length; i++) {
+        this.torrents[i].checked = false;
+        this.checkedList = this.removeHash(
+          this.checkedList,
+          this.torrents[i].hashString
+        );
+      }
+    } else {
+      for (let i = 0; i < this.torrents.length; i++) {
+        this.torrents[i].checked = true;
+        this.checkedList = this.addHash(
+          this.checkedList,
+          this.torrents[i].hashString
+        );
+      }
+    }
+  }
+
   refreshTorrents() {
     this.translateStatusCode();
     this.calCompletedRatio();
@@ -107,26 +160,7 @@ export class ListComponent implements OnInit {
     this.translateDownloadedEver();
     this.translateUploadedEver();
     this.calUploadRatio();
-  }
-
-  clickTorrent(el: any) {
-    if (el.checked) {
-      el.checked = false;
-    } else {
-      el.checked = true;
-    }
-  }
-
-  checkAll() {
-    if (this.checkedAll) {
-      for (let i = 0; i < this.torrents.length; i++) {
-        this.torrents[i].checked = false;
-      }
-    } else {
-      for (let i = 0; i < this.torrents.length; i++) {
-        this.torrents[i].checked = true;
-      }
-    }
+    this.setCheckedStatus();
   }
 
   ngOnInit() {}
@@ -134,6 +168,7 @@ export class ListComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes["torrents"] && typeof this.torrents !== "undefined") {
       this.refreshTorrents();
+      console.log(this.checkedList);
     }
   }
 }
