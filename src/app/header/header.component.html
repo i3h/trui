@@ -20,7 +20,9 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item">
-        <button class="button is-primary is-light">Upload</button>
+        <button class="button is-primary is-light" (click)="onClickUpload()">
+          Upload
+        </button>
       </a>
 
       <a class="navbar-item">
@@ -78,3 +80,4 @@
     </div>
   </div>
 </nav>
+<app-upload [showUpload]="showUpload" (shown)="onShown($event)"></app-upload>
