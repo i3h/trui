@@ -25,8 +25,7 @@ export class AppComponent implements OnInit {
       arguments: {}
     };
     let rpcData = JSON.stringify(data);
-    this.dataService.testRpc(rpcData).subscribe(res => {
-    //this.dataService.updateCSRFToken(rpcData).subscribe(res => {
+    this.dataService.rpc(rpcData).subscribe(res => {
       console.log(res);
     });
   }
