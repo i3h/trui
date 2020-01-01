@@ -18,9 +18,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let el of torrents" (click)="clickTorrent(el)">
+      <tr *ngFor="let el of torrents">
         <td>
-          <mat-checkbox [(ngModel)]="el.checked"></mat-checkbox>
+          <mat-checkbox
+            [(ngModel)]="el.checked"
+            (click)="clickCheck(el)"
+          ></mat-checkbox>
         </td>
         <td>{{ el.id }}</td>
         <td>{{ el.name }}</td>

@@ -11,6 +11,7 @@ import {
   delay,
   tap,
   mergeMap,
+  concatMap,
   repeat
 } from "rxjs/operators";
 import { GlobalService } from "./global.service";

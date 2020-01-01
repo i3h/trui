@@ -111,12 +111,12 @@ export class ListComponent implements OnInit {
     }
   }
 
-  clickTorrent(el: any) {
+  clickCheck(el: any) {
     if (el.checked) {
-      el.checked = false;
+      //el.checked = false;
       this.checkedList = this.removeHash(this.checkedList, el.hashString);
     } else {
-      el.checked = true;
+      //el.checked = true;
       this.checkedList = this.addHash(this.checkedList, el.hashString);
     }
   }
@@ -154,13 +154,13 @@ export class ListComponent implements OnInit {
   }
 
   refreshTorrents() {
+    this.setCheckedStatus();
     this.translateStatusCode();
     this.calCompletedRatio();
     this.translateTotalSize();
     this.translateDownloadedEver();
     this.translateUploadedEver();
     this.calUploadRatio();
-    this.setCheckedStatus();
   }
 
   ngOnInit() {}
@@ -168,7 +168,6 @@ export class ListComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes["torrents"] && typeof this.torrents !== "undefined") {
       this.refreshTorrents();
-      console.log(this.checkedList);
     }
   }
 }
