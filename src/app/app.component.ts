@@ -20,13 +20,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let data = {
-      method: "",
-      arguments: {}
-    };
-    let rpcData = JSON.stringify(data);
-    this.dataService.rpc(rpcData).subscribe(res => {
-      console.log(res);
+    this.dataService.getTorrents().subscribe(res => {
+      if (res.result == "success") {
+        console.log(res.arguments.torrents);
+      }
     });
   }
 }
