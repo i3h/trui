@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { GlobalService } from "./global.service";
 import { DataService } from "./data.service";
@@ -9,6 +9,8 @@ import { DataService } from "./data.service";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  @Output() change = new EventEmitter<any>();
+  torrents: any;
   isRoot: boolean = window.location.pathname == "/" ? true : false;
   isMobile: boolean = window.innerWidth < 770;
 
@@ -22,7 +24,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.dataService.getTorrents().subscribe(res => {
       if (res.result == "success") {
-        console.log(res.arguments.torrents);
+        this.torrents = res.arguments.torrents;
+        this.change.emit(this.torrents);
       }
     });
   }

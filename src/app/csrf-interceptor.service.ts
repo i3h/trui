@@ -33,7 +33,6 @@ export class CsrfInterceptorService implements HttpInterceptor {
         )
       })
     });
-    console.log("interpt header: ", window.localStorage.getItem("csrf_token"));
     return next.handle(csrfRequest).pipe(
       catchError(err => {
         if (err.status == 409) {

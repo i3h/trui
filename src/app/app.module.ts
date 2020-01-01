@@ -1,14 +1,18 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatRippleModule } from "@angular/material/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HeaderComponent } from "./header/header.component";
+import { ListComponent } from "./list/list.component";
 
 import { CsrfInterceptorService } from "./csrf-interceptor.service";
-import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ListComponent],
@@ -16,7 +20,10 @@ import { ListComponent } from './list/list.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    MatCheckboxModule,
+    MatRippleModule
   ],
   providers: [
     {

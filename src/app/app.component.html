@@ -1,9 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
-
 <div *ngIf="!isMobile" class="wrapper">
   <app-header></app-header>
-  <div class="row-container flex-container col-12">
-    <app-list></app-list>
+  <div class="row-container flex-container">
+    <app-list [torrents]="torrents"></app-list>
   </div>
 </div>
 
