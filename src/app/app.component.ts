@@ -21,15 +21,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     let data = {
-      jsonrpc: "2.0",
-      method: "torrent-get",
-      arguments: {
-        fields: ["addedDate"]
-      },
-      id: 1
+      method: "",
+      arguments: {}
     };
     let rpcData = JSON.stringify(data);
     this.dataService.testRpc(rpcData).subscribe(res => {
+    //this.dataService.updateCSRFToken(rpcData).subscribe(res => {
       console.log(res);
     });
   }
