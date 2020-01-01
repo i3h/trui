@@ -1,5 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<app-header></app-header>
+<div *ngIf="!isMobile" class="wrapper">
+  <app-header></app-header>
+  <div class="row-container flex-container col-12">
+    <app-list></app-list>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

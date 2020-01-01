@@ -1,4 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --main-width: 1200px;
+  --main-color-green: #33bfa2;
+  --main-color-blue: #2fa4fe;
+  --main-color-red: #f4526b;
+  --main-color-grey: #bdbdbd;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "monospace";
+}
+
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -150px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+/* For desktop: */
+.col-1 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 8.33);
+}
+.col-2 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 16.66);
+}
+.col-3 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 25);
+}
+.col-4 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 33.33);
+}
+.col-5 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 41.66);
+}
+.col-6 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 50);
+}
+.col-7 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 58.33);
+}
+.col-8 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 66.66);
+}
+.col-9 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 75);
+}
+.col-10 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 83.33);
+}
+.col-11 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 91.66);
+}
+.col-12 {
+  margin: auto;
+  width: calc(var(--main-width) / 100 * 100);
+}
+
+@media only screen and (max-width: 770px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 90%;
+  }
+}
