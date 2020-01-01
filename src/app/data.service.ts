@@ -7,7 +7,11 @@ import {
   take,
   takeLast,
   retry,
-  retryWhen
+  retryWhen,
+  delay,
+  tap,
+  mergeMap,
+  repeat
 } from "rxjs/operators";
 import { GlobalService } from "./global.service";
 
@@ -109,13 +113,19 @@ export class DataService {
     };
     let rpcData = JSON.stringify(data);
     let url = this.globalService.API_ENDPOINT;
-    return this.http.post(url, rpcData).pipe(
-      map((res: Response) => {
-        return res;
+    return of({}).pipe(
+      mergeMap(() => {
+        return this.http.post(url, rpcData).pipe(
+          map((res: Response) => {
+            return res;
+          }),
+          catchError(err => {
+            return of(null);
+          })
+        );
       }),
-      catchError(err => {
-        return of(null);
-      })
+      delay(3000),
+      repeat()
     );
   }
 }
