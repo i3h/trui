@@ -13,26 +13,17 @@ import {
   styleUrls: ["./upload.component.css"]
 })
 export class UploadComponent implements OnInit {
-  @Input() showUpload: boolean;
-  @Output() shown = new EventEmitter<boolean>();
+  @Output() closeUpload = new EventEmitter<boolean>();
 
   constructor() {}
 
   onClickBackground() {
-    this.showUpload = false;
+    this.closeUpload.emit(true);
   }
 
   onClickClose() {
-    this.showUpload = false;
+    this.closeUpload.emit(true);
   }
 
   ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes["showUpload"]);
-    if (changes["showUpload"] && typeof this.showUpload !== "undefined") {
-      this.showUpload = true;
-      this.shown.emit(true);
-    }
-  }
 }

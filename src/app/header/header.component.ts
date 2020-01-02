@@ -6,18 +6,17 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  @Output() showUpload = new EventEmitter<any>();
+  @Output() changeShowUpload = new EventEmitter<any>();
+  openUpload: boolean;
 
   constructor() {}
 
   onClickUpload() {
-    console.log("onClick fired");
-    this.showUpload.emit(true);
+    this.openUpload = true;
   }
 
-  onShown() {
-    console.log("onShown fired");
-    this.showUpload.emit(false);
+  onCloseUpload() {
+    this.openUpload = false;
   }
 
   ngOnInit() {}

@@ -80,4 +80,7 @@
     </div>
   </div>
 </nav>
-<app-upload [showUpload]="showUpload" (shown)="onShown($event)"></app-upload>
+<app-upload
+  *ngIf="openUpload"
+  (closeUpload)="onCloseUpload($event)"
+></app-upload>
