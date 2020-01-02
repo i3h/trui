@@ -11,10 +11,12 @@
         <th>ID</th>
         <th>Name</th>
         <th>Status</th>
-        <th>Download</th>
+        <th>Progress</th>
+        <th></th>
+        <th></th>
+        <th>Size</th>
         <th>Upload</th>
         <th>Ratio</th>
-        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -27,11 +29,24 @@
         </td>
         <td>{{ el.id }}</td>
         <td>{{ el.name }}</td>
-        <td>{{ el.status }}</td>
-        <td>{{ el.downloadedEver }}</td>
+        <td>
+          <font color="{{ el.statusColor }}">{{ el.status }}</font>
+        </td>
+        <td>
+          <progress
+            class="progress is-small"
+            value="{{ el.progressValue }}"
+            max="100"
+            [ngClass]="el.progressColor"
+          ></progress>
+        </td>
+        <td>{{ el.progressText }}</td>
+        <td>
+          <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
+        </td>
+        <td>{{ el.sizeText }}</td>
         <td>{{ el.uploadedEver }}</td>
         <td>{{ el.uploadRatio }}</td>
-        <td>17</td>
       </tr>
     </tbody>
   </table>

@@ -52,24 +52,9 @@ export class ListComponent implements OnInit {
     }
   }
 
-  translateTotalSize() {
+  setSizeText() {
     for (let i = 0; i < this.torrents.length; i++) {
-      this.torrents[i].totalSize = this.addUnit(this.torrents[i].totalSize);
-    }
-  }
-
-  translateDownloadedEver() {
-    for (let i = 0; i < this.torrents.length; i++) {
-      this.torrents[i].downloadedEver = this.addUnit(
-        this.torrents[i].downloadedEver
-      );
-      this.torrents[i].downloadedEver += " / ";
-      this.torrents[i].downloadedEver += this.addUnit(
-        this.torrents[i].totalSize
-      );
-      this.torrents[i].downloadedEver += " (";
-      this.torrents[i].downloadedEver += this.torrents[i].completedRatio;
-      this.torrents[i].downloadedEver += ")";
+      this.torrents[i].sizeText = this.addUnit(this.torrents[i].totalSize);
     }
   }
 
@@ -78,18 +63,6 @@ export class ListComponent implements OnInit {
       this.torrents[i].uploadedEver = this.addUnit(
         this.torrents[i].uploadedEver
       );
-    }
-  }
-
-  calCompletedRatio() {
-    for (let i = 0; i < this.torrents.length; i++) {
-      this.torrents[i].completedRatio =
-        (
-          (this.torrents[i].downloadedEver / this.torrents[i].downloadedEver) *
-          100
-        )
-          .toFixed(2)
-          .toString() + "%";
     }
   }
 
@@ -153,14 +126,75 @@ export class ListComponent implements OnInit {
     }
   }
 
+  setProgressValue() {
+    for (let i = 0; i < this.torrents.length; i++) {
+      let value = Math.ceil(
+        (this.torrents[i].downloadedEver / this.torrents[i].totalSize) * 100
+      );
+      if (value < 100) {
+        this.torrents[i].progressValue = value;
+      } else {
+        this.torrents[i].progressValue = 100;
+      }
+    }
+  }
+
+  setProgressText() {
+    for (let i = 0; i < this.torrents.length; i++) {
+      this.torrents[i].progressText = this.torrents[i].progressValue + "%";
+    }
+  }
+
+  setProgressColor() {
+    for (let i = 0; i < this.torrents.length; i++) {
+      if (this.torrents[i].status == "Downloading") {
+        this.torrents[i].progressColor = "is-success";
+      } else if (this.torrents[i].status == "Seeding") {
+        this.torrents[i].progressColor = "is-info";
+      } else {
+        this.torrents[i].progressColor = "";
+      }
+    }
+  }
+
+  setStatusColor() {
+    for (let i = 0; i < this.torrents.length; i++) {
+      if (this.torrents[i].status == "Downloading") {
+        this.torrents[i].statusColor = "green";
+      } else if (this.torrents[i].status == "Seeding") {
+        this.torrents[i].statusColor = "#23A1D8";
+      } else {
+        this.torrents[i].statusColor = "";
+      }
+    }
+  }
+
+  setRateText() {
+    for (let i = 0; i < this.torrents.length; i++) {
+      if (
+        this.torrents[i].rateDownload != 0 ||
+        this.torrents[i].rateUpload != 0
+      ) {
+        this.torrents[i].rateColor = "green";
+      }
+      this.torrents[i].rateText =
+        "D " + this.addUnit(this.torrents[i].rateDownload) + "/s";
+      this.torrents[i].rateText +=
+        " | U " + this.addUnit(this.torrents[i].rateUpload) + "/s";
+    }
+  }
+
   refreshTorrents() {
     this.setCheckedStatus();
     this.translateStatusCode();
-    this.calCompletedRatio();
-    this.translateTotalSize();
-    this.translateDownloadedEver();
+    this.setSizeText();
     this.translateUploadedEver();
     this.calUploadRatio();
+    this.setProgressValue();
+    this.setProgressText();
+    this.setProgressColor();
+    this.setStatusColor();
+    this.setRateText();
   }
 
   ngOnInit() {}
