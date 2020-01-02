@@ -26,11 +26,15 @@
       </a>
 
       <a class="navbar-item">
-        <button class="button is-danger is-light">Delete</button>
+        <button class="button is-danger is-light" (click)="onClickDelete()">
+          Delete
+        </button>
       </a>
 
       <a class="navbar-item">
-        <button class="button is-info is-light">Setting</button>
+        <button class="button is-info is-light" (click)="onClickSetting()">
+          Setting
+        </button>
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
@@ -88,3 +92,11 @@
   *ngIf="openUpload"
   (closeUpload)="onCloseUpload($event)"
 ></app-upload>
+<app-delete
+  *ngIf="openDelete"
+  (closeDelete)="onCloseDelete($event)"
+></app-delete>
+<app-setting
+  *ngIf="openSetting"
+  (closeSetting)="onCloseSetting($event)"
+></app-setting>

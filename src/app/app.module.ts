@@ -14,9 +14,11 @@ import { ListComponent } from "./list/list.component";
 
 import { CsrfInterceptorService } from "./csrf-interceptor.service";
 import { UploadComponent } from './header/upload/upload.component';
+import { DeleteComponent } from './header/delete/delete.component';
+import { SettingComponent } from './header/setting/setting.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent],
+  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent, DeleteComponent, SettingComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
