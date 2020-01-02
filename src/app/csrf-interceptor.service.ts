@@ -45,8 +45,8 @@ export class CsrfInterceptorService implements HttpInterceptor {
               )
             })
           });
-          return next.handle(csrfRequest);
         }
+        return next.handle(csrfRequest);
       })
     );
   }

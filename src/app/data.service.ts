@@ -22,14 +22,15 @@ import { GlobalService } from "./global.service";
 export class DataService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
-  rpc(data: string): Observable<any> {
+  rpc(): Observable<any> {
     let url = this.globalService.API_ENDPOINT;
-    return this.http.post(url, data).pipe(
+    return this.http.post(url, "").pipe(
       map((res: Response) => {
         return res;
       }),
       catchError(err => {
-        return of(null);
+        //console.log("err: ", err);
+        return of(err);
       })
     );
   }

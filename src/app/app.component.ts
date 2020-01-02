@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   torrents: any;
   isRoot: boolean = window.location.pathname == "/" ? true : false;
   isMobile: boolean = window.innerWidth < 770;
+  isRPCOK: boolean;
+  isRPCBad: boolean;
 
   constructor(
     private router: Router,
@@ -22,10 +24,18 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dataService.getTorrents().subscribe(res => {
-      if (res.result == "success") {
-        this.torrents = res.arguments.torrents;
-        this.change.emit(this.torrents);
+    this.dataService.rpc().subscribe(res => {
+      if (res.status == 502) {
+        this.isRPCBad = true;
+        //console.log("502 error");
+      } else {
+        this.isRPCOK = true;
+        this.dataService.getTorrents().subscribe(res => {
+          if (res.result == "success") {
+            this.torrents = res.arguments.torrents;
+            this.change.emit(this.torrents);
+          }
+        });
       }
     });
   }

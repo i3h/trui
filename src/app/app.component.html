@@ -1,7 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div *ngIf="!isMobile" class="wrapper">
   <app-header></app-header>
-  <app-list [torrents]="torrents"></app-list>
+  <app-list *ngIf="isRPCOK" [torrents]="torrents"></app-list>
+  <div class="row-container flex-container col-12 spacing">
+    <div *ngIf="isRPCBad">Please check your transmission-daemon service.</div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
