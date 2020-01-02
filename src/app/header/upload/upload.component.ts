@@ -23,6 +23,8 @@ export class UploadComponent implements OnInit {
   filesToUpload: Array<File>;
   metainfo: Array<string>;
   download_dir: string;
+  download_dir_error: boolean;
+  noFilesChosen: boolean;
   uploadedNotice: string = "No files chosen";
 
   constructor(
@@ -66,27 +68,31 @@ export class UploadComponent implements OnInit {
     }
   }
 
-  handleDownloadLocation(event) {
-    console.log("location: ", event);
-  }
-
   cancel() {
     this.closeUpload.emit(true);
   }
 
   upload() {
-    if (this.download_dir != undefined && this.download_dir != "") {
-      console.log("directort: ", this.download_dir);
-      for (let i = 0; i < this.metainfo.length; i++) {
-        let data = {
-          metainfo: this.metainfo[i],
-          download_dir: this.download_dir
-        };
-        this.dataService.uploadTorrents(data).subscribe(res => {
-          console.log(res);
-        });
-      }
+    if (this.metainfo == undefined) {
+      this.noFilesChosen = true;
+      return;
     }
+    if (this.download_dir == undefined || this.download_dir == "") {
+      this.download_dir_error = true;
+      return;
+    }
+
+    for (let i = 0; i < this.metainfo.length; i++) {
+      let data = {
+        metainfo: this.metainfo[i],
+        download_dir: this.download_dir
+      };
+      this.dataService.uploadTorrents(data).subscribe(res => {
+        //console.log(res);
+      });
+    }
+
+    this.closeUpload.emit(true);
   }
 
   ngOnInit() {}

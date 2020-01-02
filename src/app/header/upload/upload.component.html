@@ -29,6 +29,9 @@
               </span>
             </label>
           </div>
+          <p class="help is-danger" *ngIf="noFilesChosen">
+            Please choose files
+          </p>
 
           <div class="spacing"></div>
 
@@ -37,11 +40,15 @@
             <div class="control">
               <input
                 class="input"
+                [ngClass]="download_dir_error ? 'is-danger' : ''"
                 type="text"
-                placeholder="Text input"
+                placeholder="Path input"
                 [(ngModel)]="download_dir"
               />
             </div>
+            <p class="help is-danger" *ngIf="download_dir_error">
+              This path is invalid
+            </p>
           </div>
 
           <div class="spacing"></div>
