@@ -1,53 +1,51 @@
-<div class="container is-fluid">
-  <table class="table is-hoverable is-fullwidth">
-    <thead>
-      <tr>
-        <th>
-          <mat-checkbox
-            [(ngModel)]="checkedAll"
-            (click)="checkAll()"
-          ></mat-checkbox>
-        </th>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Progress</th>
-        <th></th>
-        <th></th>
-        <th>Size</th>
-        <th>Upload</th>
-        <th>Ratio</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let el of torrents">
-        <td>
-          <mat-checkbox
-            [(ngModel)]="el.checked"
-            (click)="clickCheck(el)"
-          ></mat-checkbox>
-        </td>
-        <td>{{ el.id }}</td>
-        <td>{{ el.name }}</td>
-        <td>
-          <font color="{{ el.statusColor }}">{{ el.status }}</font>
-        </td>
-        <td>
-          <progress
-            class="progress is-small"
-            value="{{ el.progressValue }}"
-            max="100"
-            [ngClass]="el.progressColor"
-          ></progress>
-        </td>
-        <td>{{ el.progressText }}</td>
-        <td>
-          <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
-        </td>
-        <td>{{ el.sizeText }}</td>
-        <td>{{ el.uploadedEver }}</td>
-        <td>{{ el.uploadRatio }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table class="table is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th>
+        <mat-checkbox
+          [(ngModel)]="checkedAll"
+          (click)="checkAll()"
+        ></mat-checkbox>
+      </th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Progress</th>
+      <th></th>
+      <th></th>
+      <th>Size</th>
+      <th>Upload</th>
+      <th>Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let el of torrents">
+      <td>
+        <mat-checkbox
+          [(ngModel)]="el.checked"
+          (click)="clickCheck(el)"
+        ></mat-checkbox>
+      </td>
+      <td>{{ el.id }}</td>
+      <td>{{ el.name }}</td>
+      <td>
+        <font color="{{ el.statusColor }}">{{ el.status }}</font>
+      </td>
+      <td>
+        <progress
+          class="progress is-small"
+          value="{{ el.progressValue }}"
+          max="100"
+          [ngClass]="el.progressColor"
+        ></progress>
+      </td>
+      <td>{{ el.progressText }}</td>
+      <td>
+        <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
+      </td>
+      <td>{{ el.sizeText }}</td>
+      <td>{{ el.uploadedEver }}</td>
+      <td>{{ el.uploadRatio }}</td>
+    </tr>
+  </tbody>
+</table>
