@@ -129,4 +129,23 @@ export class DataService {
       repeat()
     );
   }
+
+  uploadTorrents(data: any): Observable<any> {
+    let rpcData = {
+      method: "torrent-add",
+      arguments: {
+        metainfo: data.metainfo,
+        "download-dir": data.download_dir
+      }
+    };
+    let url = this.globalService.API_ENDPOINT;
+    return this.http.post(url, rpcData).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError(err => {
+        return of(null);
+      })
+    );
+  }
 }
