@@ -7,12 +7,14 @@
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-parent">
       <div class="tile is-child">
-        <app-list
-          *ngIf="isRPCOK"
-          [torrents]="torrents"
-          [shortMode]="shortMode"
-          (focus)="onFocus($event)"
-        ></app-list>
+        <div class="unselectable">
+          <app-list
+            *ngIf="isRPCOK"
+            [torrents]="torrents"
+            [shortMode]="shortMode"
+            (focus)="onFocus($event)"
+          ></app-list>
+        </div>
       </div>
     </div>
     <div *ngIf="openInfo" class="tile is-6 is-parent">
