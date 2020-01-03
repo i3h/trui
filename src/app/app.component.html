@@ -11,8 +11,12 @@
           <app-list
             *ngIf="isRPCOK"
             [torrents]="torrents"
+            [focusID]="focusID"
+            [checkedAll]="checkedAll"
             [shortMode]="shortMode"
             (focus)="onFocus($event)"
+            (check)="onCheck($event)"
+            (checkAll)="onCheckAll($event)"
           ></app-list>
         </div>
       </div>

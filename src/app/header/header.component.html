@@ -51,7 +51,11 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item global-data" style="width:40em" *ngIf="filesNum">
+      <div
+        class="navbar-item global-data unselectable"
+        style="width:40em"
+        *ngIf="filesNum"
+      >
         {{ filesNum }} files&nbsp;
         <font color="{{ rateColor }}">{{ rateText }}</font>
       </div>

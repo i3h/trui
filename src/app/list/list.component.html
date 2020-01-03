@@ -4,7 +4,7 @@
       <th>
         <mat-checkbox
           [(ngModel)]="checkedAll"
-          (click)="checkAll()"
+          (click)="onCheckAll()"
         ></mat-checkbox>
       </th>
       <th>ID</th>
@@ -27,7 +27,7 @@
       <td>
         <mat-checkbox
           [(ngModel)]="el.checked"
-          (click)="clickCheck(el)"
+          (click)="onClickCheck(el)"
         ></mat-checkbox>
       </td>
       <td>{{ el.id }}</td>
