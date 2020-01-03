@@ -1,8 +1,7 @@
-<div>Name: {{ torrent.name }}</div>
-<div class="spacing"></div>
-<div>Hash: {{ torrent.hashString }}</div>
-<div class="spacing"></div>
-<div>Error: {{ torrent.errorString == "" ? "None" : torrent.errorString }}</div>
-<div class="spacing"></div>
-<div>Comment: {{ torrent.comment }}</div>
-<div class="spacing"></div>
+<hr />
+<div *ngFor="let el of torrent.files">
+  <div>{{ el.name }}</div>
+  <div class="spacing"></div>
+  <div class="spacing"></div>
+</div>
+<hr />
