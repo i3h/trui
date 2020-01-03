@@ -37,9 +37,9 @@ export class AppComponent implements OnInit {
           }
         });
         this.dataService.getSession().subscribe(res => {
-					console.log(res)
+          //console.log(res)
           if (res.result == "success") {
-						/*
+            /*
             this.session= res.arguments.torrents;
             this.change.emit(this.torrents);
 						*/

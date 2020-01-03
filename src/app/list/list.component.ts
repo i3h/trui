@@ -11,7 +11,7 @@ import { DataService } from "../data.service";
 export class ListComponent implements OnInit {
   @Input() torrents: any;
   checkedAll: boolean;
-  focused: any;
+  focusedID: any;
 
   constructor(
     private router: Router,
@@ -21,7 +21,8 @@ export class ListComponent implements OnInit {
   ) {}
 
   onClick(el) {
-    this.focused = el.id;
+    this.globalService.focusedID = el.id;
+    this.focusedID = el.id;
   }
 
   translateStatusCode() {

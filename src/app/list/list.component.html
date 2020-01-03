@@ -21,7 +21,7 @@
   <tbody>
     <tr
       *ngFor="let el of torrents"
-      [ngClass]="el.id == focused ? 'focused' : ''"
+      [ngClass]="el.id == focusedID ? 'focused' : ''"
       (click)="onClick(el)"
     >
       <td>

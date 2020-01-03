@@ -80,17 +80,10 @@
           </div>
 
           <div class="spacing"></div>
-
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-link" (click)="save()">Save</button>
-            </div>
-            <div class="control">
-              <button class="button is-link is-light" (click)="cancel()">
-                Cancel
-              </button>
-            </div>
-          </div>
+          <app-torrents *ngIf="activeTab == 'torrents'"></app-torrents>
+          <app-speed *ngIf="activeTab == 'speed'"></app-speed>
+          <app-peers *ngIf="activeTab == 'peers'"></app-peers>
+          <app-network *ngIf="activeTab == 'network'"></app-network>
         </div>
       </div>
     </div>
