@@ -1,4 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  SimpleChanges
+} from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 import { GlobalService } from "../global.service";
 import { DataService } from "../data.service";
 
@@ -8,14 +16,44 @@ import { DataService } from "../data.service";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
+  @Input() torrents: any;
   openUpload: boolean;
   openDelete: boolean;
   openSetting: boolean;
+  filesNum: number;
+  rateText: string;
+  rateColor: string;
 
   constructor(
     private globalService: GlobalService,
     private dataService: DataService
   ) {}
+
+  setRateText() {
+    let d = 0;
+    let u = 0;
+    for (let i = 0; i < this.torrents.length; i++) {
+      d += this.torrents[i].rateDownload;
+      u += this.torrents[i].rateUpload;
+    }
+    if (d != 0 || u != 0) {
+      this.rateColor = "green";
+    }
+    this.rateText = " | D " + this.addUnit(d) + "/s";
+    this.rateText += " | U " + this.addUnit(u) + "/s";
+  }
+
+  addUnit(num) {
+    if (num > 1000000000) {
+      return (num / 1000000000).toFixed(2).toString() + " GB";
+    } else if (num > 1000000) {
+      return (num / 1000000).toFixed(2).toString() + " MB";
+    } else if (num > 1000) {
+      return (num / 1000).toFixed(2).toString() + " KB";
+    } else {
+      return num.toString() + " B";
+    }
+  }
 
   onClickStart() {
     console.log("start");
@@ -72,4 +110,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["torrents"] && typeof this.torrents !== "undefined") {
+      this.filesNum = this.torrents.length;
+      this.setRateText();
+    }
+  }
 }

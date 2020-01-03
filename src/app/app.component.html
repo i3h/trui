@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div *ngIf="!isMobile" class="wrapper">
-  <app-header></app-header>
+  <app-header [torrents]="torrents"></app-header>
   <div class="row-container flex-container col-12 spacing">
     <div *ngIf="isRPCBad">Please check your transmission-daemon service.</div>
   </div>
