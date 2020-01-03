@@ -18,6 +18,7 @@ import { DataService } from "../data.service";
 export class ListComponent implements OnInit {
   @Output() focus = new EventEmitter<any>();
   @Input() torrents: any;
+  @Input() shortMode: any;
   checkedAll: boolean;
   focusID: any;
 
@@ -197,6 +198,9 @@ export class ListComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes["torrents"] && typeof this.torrents !== "undefined") {
       this.refreshTorrents();
+    }
+    if (changes["shortMode"] && typeof this.shortMode !== "undefined") {
+      console.log("shortMode: ", this.shortMode);
     }
   }
 }

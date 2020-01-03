@@ -12,10 +12,10 @@
       <th>Status</th>
       <th>Progress</th>
       <th></th>
-      <th></th>
-      <th>Size</th>
-      <th>Upload</th>
-      <th>Ratio</th>
+      <th *ngIf="!shortMode"></th>
+      <th *ngIf="!shortMode">Size</th>
+      <th *ngIf="!shortMode">Upload</th>
+      <th *ngIf="!shortMode">Ratio</th>
     </tr>
   </thead>
   <tbody>
@@ -43,13 +43,13 @@
           [ngClass]="el.progressColor"
         ></progress>
       </td>
-      <td>{{ el.progressText }}</td>
-      <td style="width:20em">
+      <td *ngIf="!shortMode">{{ el.progressText }}</td>
+      <td *ngIf="!shortMode" style="width:20em">
         <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
       </td>
-      <td>{{ el.sizeText }}</td>
-      <td>{{ el.uploadedEver }}</td>
-      <td>{{ el.uploadRatio }}</td>
+      <td *ngIf="!shortMode">{{ el.sizeText }}</td>
+      <td *ngIf="!shortMode">{{ el.uploadedEver }}</td>
+      <td *ngIf="!shortMode">{{ el.uploadRatio }}</td>
     </tr>
   </tbody>
 </table>

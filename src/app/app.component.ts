@@ -16,8 +16,6 @@ import { DataService } from "./data.service";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  @Output() change = new EventEmitter<any>();
-  @Output() focusChange = new EventEmitter<any>();
   torrents: any;
   torrent: any;
   isRoot: boolean = window.location.pathname == "/" ? true : false;
@@ -25,6 +23,7 @@ export class AppComponent implements OnInit {
   isRPCOK: boolean;
   isRPCBad: boolean;
   openInfo: boolean;
+  shortMode: boolean;
 
   constructor(
     private router: Router,
@@ -35,16 +34,18 @@ export class AppComponent implements OnInit {
 
   onFocus(id: any) {
     this.openInfo = true;
+    this.shortMode = true;
     for (let i = 0; i < this.torrents.length; i++) {
       if (this.torrents[i].id == id) {
         this.torrent = this.torrents[i];
-        this.focusChange.emit(this.torrent);
       }
     }
   }
 
   onCloseInfo() {
+    console.log("fired");
     this.openInfo = false;
+    this.shortMode = false;
   }
 
   ngOnInit() {
@@ -57,7 +58,6 @@ export class AppComponent implements OnInit {
         this.dataService.getTorrents().subscribe(res => {
           if (res.result == "success") {
             this.torrents = res.arguments.torrents;
-            this.change.emit(this.torrents);
           }
         });
         this.dataService.getSession().subscribe(res => {
@@ -72,12 +72,4 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
-  /*
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes["focusID"] && typeof this.focusID !== "undefined") {
-      console.log("id: ", this.focusID);
-    }
-  }
-	*/
 }
