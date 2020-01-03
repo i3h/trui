@@ -1,12 +1,6 @@
 <div class="tabs">
   <ul>
     <li
-      [ngClass]="activeTab == 'charts' ? 'is-active' : ''"
-      (click)="onClickCharts()"
-    >
-      <a>Charts</a>
-    </li>
-    <li
       [ngClass]="activeTab == 'details' ? 'is-active' : ''"
       (click)="onClickDetails()"
     >
@@ -90,7 +84,6 @@
 
 <div class="spacing"></div>
 
-<app-charts *ngIf="activeTab == 'charts'"></app-charts>
 <app-details *ngIf="activeTab == 'details'"></app-details>
 <app-peers *ngIf="activeTab == 'peers'"></app-peers>
 <app-trackers *ngIf="activeTab == 'trackers'"></app-trackers>

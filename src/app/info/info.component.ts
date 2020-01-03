@@ -18,7 +18,7 @@ import { DataService } from "../data.service";
 export class InfoComponent implements OnInit {
   @Output() closeInfo = new EventEmitter<boolean>();
   @Input() torrent: any;
-  activeTab: string = "charts";
+  activeTab: string = "details";
 
   constructor(
     private router: Router,
@@ -30,10 +30,6 @@ export class InfoComponent implements OnInit {
   onClickClose() {
     console.log("fired");
     this.closeInfo.emit(true);
-  }
-
-  onClickCharts() {
-    this.activeTab = "charts";
   }
 
   onClickDetails() {

@@ -21,7 +21,6 @@ import { SettingSpeedComponent } from "./header/setting/setting-speed/setting-sp
 import { SettingPeersComponent } from "./header/setting/setting-peers/setting-peers.component";
 import { SettingNetworkComponent } from "./header/setting/setting-network/setting-network.component";
 import { InfoComponent } from "./info/info.component";
-import { ChartsComponent } from "./info/charts/charts.component";
 import { DetailsComponent } from "./info/details/details.component";
 import { PeersComponent } from "./info/peers/peers.component";
 import { TrackersComponent } from "./info/trackers/trackers.component";
@@ -40,7 +39,6 @@ import { FilesComponent } from "./info/files/files.component";
     SettingPeersComponent,
     SettingNetworkComponent,
     InfoComponent,
-    ChartsComponent,
     DetailsComponent,
     PeersComponent,
     TrackersComponent,
