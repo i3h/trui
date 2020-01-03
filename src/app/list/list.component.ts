@@ -11,7 +11,6 @@ import { DataService } from "../data.service";
 export class ListComponent implements OnInit {
   @Input() torrents: any;
   checkedAll: boolean;
-  checkedList: string[] = [];
   focused: any;
 
   constructor(
@@ -81,7 +80,7 @@ export class ListComponent implements OnInit {
 
   setCheckedStatus() {
     for (let i = 0; i < this.torrents.length; i++) {
-      if (this.checkedList.includes(this.torrents[i].hashString)) {
+      if (this.globalService.checkedList.includes(this.torrents[i].id)) {
         this.torrents[i].checked = true;
       } else {
         this.torrents[i].checked = false;
@@ -92,41 +91,23 @@ export class ListComponent implements OnInit {
   clickCheck(el: any) {
     if (el.checked) {
       //el.checked = false;
-      this.checkedList = this.removeHash(this.checkedList, el.hashString);
+      this.globalService.deleteFromCheckedList(el.id);
     } else {
       //el.checked = true;
-      this.checkedList = this.addHash(this.checkedList, el.hashString);
+      this.globalService.addToCheckedList(el.id);
     }
-  }
-
-  addHash(list: string[], hash: string) {
-    let index = list.indexOf(hash);
-    if (index == -1) list.push(hash);
-    return list;
-  }
-
-  removeHash(list: string[], hash: string) {
-    let index = list.indexOf(hash);
-    if (index !== -1) list.splice(index, 1);
-    return list;
   }
 
   checkAll() {
     if (this.checkedAll) {
       for (let i = 0; i < this.torrents.length; i++) {
         this.torrents[i].checked = false;
-        this.checkedList = this.removeHash(
-          this.checkedList,
-          this.torrents[i].hashString
-        );
+        this.globalService.deleteFromCheckedList(this.torrents[i].id);
       }
     } else {
       for (let i = 0; i < this.torrents.length; i++) {
         this.torrents[i].checked = true;
-        this.checkedList = this.addHash(
-          this.checkedList,
-          this.torrents[i].hashString
-        );
+        this.globalService.addToCheckedList(this.torrents[i].id);
       }
     }
   }

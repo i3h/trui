@@ -149,4 +149,23 @@ export class DataService {
       })
     );
   }
+
+  deleteTorrents(data: any): Observable<any> {
+    let rpcData = {
+      method: "torrent-remove",
+      arguments: {
+        ids: data.ids,
+        "delete-local-data": data.delete_local_data
+      }
+    };
+    let url = this.globalService.API_ENDPOINT;
+    return this.http.post(url, rpcData).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError(err => {
+        return of(null);
+      })
+    );
+  }
 }

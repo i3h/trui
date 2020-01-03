@@ -4,58 +4,31 @@
     <div class="modal-content">
       <div class="card">
         <div class="modal-form">
-          <label class="label">Files</label>
-          <div class="file has-name">
-            <label class="file-label">
-              <form method="post" enctype="multipart/form-data">
-                <input
-                  class="file-input"
-                  type="file"
-                  name="torrents"
-                  multiple
-                  (change)="handleFilesInput($event)"
-                />
-              </form>
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fas fa-upload"></i>
-                </span>
-                <span class="file-label">
-                  Choose files ...
-                </span>
-              </span>
-              <span class="file-name">
-                {{ uploadedNotice }}
-              </span>
-            </label>
-          </div>
-          <p class="help is-danger" *ngIf="noFilesChosen">
-            Please choose files
+          <div class="spacing"></div>
+          <p>
+            <font color="#E35757">
+              {{ deleteNotice }}
+            </font>
           </p>
 
           <div class="spacing"></div>
 
           <div class="field">
-            <label class="label">Download location</label>
             <div class="control">
-              <input
-                class="input"
-                [ngClass]="download_dir_error ? 'is-danger' : ''"
-                type="text"
-                placeholder="Path input"
-                [(ngModel)]="download_dir"
-              />
+              <label class="checkbox">
+                <input type="checkbox" [(ngModel)]="delete_local_data" />
+                Delete downloaded files from disk.
+              </label>
             </div>
-            <p class="help is-danger" *ngIf="download_dir_error">
-              This path is invalid
-            </p>
           </div>
 
           <div class="spacing"></div>
 
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-link" (click)="upload()">Upload</button>
+              <button class="button is-link is-danger" (click)="delete()">
+                Delete
+              </button>
             </div>
             <div class="control">
               <button class="button is-link is-light" (click)="cancel()">

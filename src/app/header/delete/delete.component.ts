@@ -20,6 +20,8 @@ const ESCAPE = 27;
 })
 export class DeleteComponent implements OnInit {
   @Output() closeDelete = new EventEmitter<boolean>();
+  deleteNotice: string;
+  delete_local_data: boolean;
 
   constructor(
     private router: Router,
@@ -47,5 +49,31 @@ export class DeleteComponent implements OnInit {
     this.closeDelete.emit(true);
   }
 
-  ngOnInit() {}
+  delete() {
+    if (this.globalService.checkedList.length > 0) {
+      let data = {
+        ids: this.globalService.checkedList,
+        delete_local_data: this.delete_local_data
+      };
+      this.dataService.deleteTorrents(data).subscribe(res => {
+        //console.log(res);
+      });
+      // clear checked list
+      this.globalService.checkedList = [];
+
+      this.closeDelete.emit(true);
+    }
+    return;
+  }
+
+  ngOnInit() {
+    if (this.globalService.checkedList.length > 0) {
+      this.deleteNotice =
+        "You will delete " +
+        this.globalService.checkedList.length.toString() +
+        " files.";
+    } else {
+      this.deleteNotice = "No files chosen.";
+    }
+  }
 }

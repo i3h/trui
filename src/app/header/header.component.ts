@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { GlobalService } from "../global.service";
+import { DataService } from "../data.service";
 
 @Component({
   selector: "app-header",
@@ -11,7 +13,10 @@ export class HeaderComponent implements OnInit {
   openDelete: boolean;
   openSetting: boolean;
 
-  constructor() {}
+  constructor(
+    private globalService: GlobalService,
+    private dataService: DataService
+  ) {}
 
   onClickUpload() {
     this.openUpload = true;
