@@ -80,3 +80,9 @@
 </div>
 
 <div class="spacing"></div>
+
+<app-charts *ngIf="activeTab == 'charts'"></app-charts>
+<app-details *ngIf="activeTab == 'details'"></app-details>
+<app-peers *ngIf="activeTab == 'peers'"></app-peers>
+<app-trackers *ngIf="activeTab == 'trackers'"></app-trackers>
+<app-files *ngIf="activeTab == 'files'"></app-files>
