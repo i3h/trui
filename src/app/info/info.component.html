@@ -36,6 +36,9 @@
 <div class="spacing"></div>
 
 <app-details *ngIf="activeTab == 'details'" [torrent]="torrent"></app-details>
-<app-peers *ngIf="activeTab == 'peers'"></app-peers>
-<app-trackers *ngIf="activeTab == 'trackers'"></app-trackers>
-<app-files *ngIf="activeTab == 'files'"></app-files>
+<app-peers *ngIf="activeTab == 'peers'" [torrent]="torrent"></app-peers>
+<app-trackers
+  *ngIf="activeTab == 'trackers'"
+  [torrent]="torrent"
+></app-trackers>
+<app-files *ngIf="activeTab == 'files'" [torrent]="torrent"></app-files>
