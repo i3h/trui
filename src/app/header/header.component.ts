@@ -38,6 +38,8 @@ export class HeaderComponent implements OnInit {
     }
     if (d != 0 || u != 0) {
       this.rateColor = "green";
+    } else {
+      this.rateColor = "";
     }
     this.rateText = " | D " + this.addUnit(d) + "/s";
     this.rateText += " | U " + this.addUnit(u) + "/s";
