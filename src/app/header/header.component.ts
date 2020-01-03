@@ -8,7 +8,6 @@ import { DataService } from "../data.service";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  @Output() changeShowUpload = new EventEmitter<any>();
   openUpload: boolean;
   openDelete: boolean;
   openSetting: boolean;

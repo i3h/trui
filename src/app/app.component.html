@@ -1,11 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div *ngIf="!isMobile" class="wrapper">
   <app-header></app-header>
-  <app-list *ngIf="isRPCOK" [torrents]="torrents"></app-list>
   <div class="row-container flex-container col-12 spacing">
     <div *ngIf="isRPCBad">Please check your transmission-daemon service.</div>
   </div>
-  <app-info></app-info>
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-parent">
+      <div class="tile is-child">
+        <app-list
+          *ngIf="isRPCOK"
+          [torrents]="torrents"
+          (focus)="onFocus($event)"
+        ></app-list>
+      </div>
+    </div>
+    <div *ngIf="focusID" class="tile is-4 is-parent">
+      <div class="tile is-child">
+        <app-info></app-info>
+      </div>
+    </div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

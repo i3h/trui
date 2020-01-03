@@ -1,4 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  SimpleChanges
+} from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { GlobalService } from "./global.service";
 import { DataService } from "./data.service";
@@ -15,6 +22,7 @@ export class AppComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 770;
   isRPCOK: boolean;
   isRPCBad: boolean;
+  focusID: string;
 
   constructor(
     private router: Router,
@@ -22,6 +30,10 @@ export class AppComponent implements OnInit {
     private globalService: GlobalService,
     private dataService: DataService
   ) {}
+
+  onFocus(id: any) {
+    this.focusID = id;
+  }
 
   ngOnInit() {
     this.dataService.rpc().subscribe(res => {
@@ -48,4 +60,12 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
+  /*
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["focusID"] && typeof this.focusID !== "undefined") {
+      console.log("id: ", this.focusID);
+    }
+  }
+	*/
 }

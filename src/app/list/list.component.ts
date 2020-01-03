@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  SimpleChanges
+} from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { GlobalService } from "../global.service";
 import { DataService } from "../data.service";
@@ -9,9 +16,10 @@ import { DataService } from "../data.service";
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
+  @Output() focus = new EventEmitter<any>();
   @Input() torrents: any;
   checkedAll: boolean;
-  focusedID: any;
+  focusID: any;
 
   constructor(
     private router: Router,
@@ -21,8 +29,8 @@ export class ListComponent implements OnInit {
   ) {}
 
   onClick(el) {
-    this.globalService.focusedID = el.id;
-    this.focusedID = el.id;
+    this.focusID = el.id;
+    this.focus.emit(this.focusID);
   }
 
   translateStatusCode() {
