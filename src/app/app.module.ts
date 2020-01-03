@@ -25,6 +25,7 @@ import { DetailsComponent } from "./info/details/details.component";
 import { PeersComponent } from "./info/peers/peers.component";
 import { TrackersComponent } from "./info/trackers/trackers.component";
 import { FilesComponent } from "./info/files/files.component";
+import { ActionComponent } from './action/action.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { FilesComponent } from "./info/files/files.component";
     DetailsComponent,
     PeersComponent,
     TrackersComponent,
-    FilesComponent
+    FilesComponent,
+    ActionComponent
   ],
   imports: [
     BrowserModule,
