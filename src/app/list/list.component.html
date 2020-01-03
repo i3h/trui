@@ -1,4 +1,4 @@
-<table class="table is-hoverable is-fullwidth">
+<table class="table is-fullwidth">
   <thead>
     <tr>
       <th>
@@ -19,7 +19,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let el of torrents">
+    <tr
+      *ngFor="let el of torrents"
+      [ngClass]="el.id == focused ? 'focused' : ''"
+      (click)="onClick(el)"
+    >
       <td>
         <mat-checkbox
           [(ngModel)]="el.checked"
@@ -40,7 +44,7 @@
         ></progress>
       </td>
       <td>{{ el.progressText }}</td>
-      <td>
+      <td style="width:20em">
         <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
       </td>
       <td>{{ el.sizeText }}</td>

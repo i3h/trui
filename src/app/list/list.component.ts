@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
   @Input() torrents: any;
   checkedAll: boolean;
   checkedList: string[] = [];
+  focused: any;
 
   constructor(
     private router: Router,
@@ -19,6 +20,10 @@ export class ListComponent implements OnInit {
     private globalService: GlobalService,
     private dataService: DataService
   ) {}
+
+  onClick(el) {
+    this.focused = el.id;
+  }
 
   translateStatusCode() {
     for (let i = 0; i < this.torrents.length; i++) {
