@@ -20,6 +20,7 @@ const ESCAPE = 27;
 })
 export class SettingComponent implements OnInit {
   @Output() closeSetting = new EventEmitter<boolean>();
+  activeTab: string = "torrents";
 
   constructor(
     private router: Router,
@@ -27,6 +28,22 @@ export class SettingComponent implements OnInit {
     private globalService: GlobalService,
     private dataService: DataService
   ) {}
+
+  onClickTorrents() {
+    this.activeTab = "torrents";
+  }
+
+  onClickSpeed() {
+    this.activeTab = "speed";
+  }
+
+  onClickPeers() {
+    this.activeTab = "peers";
+  }
+
+  onClickNetwork() {
+    this.activeTab = "network";
+  }
 
   @HostListener("document:keydown", ["$event"])
   private handleKeydown(event: KeyboardEvent) {
@@ -44,6 +61,11 @@ export class SettingComponent implements OnInit {
   }
 
   cancel() {
+    this.closeSetting.emit(true);
+  }
+
+  save() {
+    console.log("fired");
     this.closeSetting.emit(true);
   }
 

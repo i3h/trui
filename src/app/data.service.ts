@@ -35,6 +35,28 @@ export class DataService {
     );
   }
 
+  getSession(): Observable<any> {
+    let data = {
+      method: "session-get"
+    };
+    let rpcData = JSON.stringify(data);
+    let url = this.globalService.API_ENDPOINT;
+    return of({}).pipe(
+      mergeMap(() => {
+        return this.http.post(url, rpcData).pipe(
+          map((res: Response) => {
+            return res;
+          }),
+          catchError(err => {
+            return of(null);
+          })
+        );
+      }),
+      delay(3000),
+      repeat()
+    );
+  }
+
   getTorrents(): Observable<any> {
     let data = {
       method: "torrent-get",

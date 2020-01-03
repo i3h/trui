@@ -16,9 +16,13 @@ import { CsrfInterceptorService } from "./csrf-interceptor.service";
 import { UploadComponent } from './header/upload/upload.component';
 import { DeleteComponent } from './header/delete/delete.component';
 import { SettingComponent } from './header/setting/setting.component';
+import { TorrentsComponent } from './header/setting/torrents/torrents.component';
+import { SpeedComponent } from './header/setting/speed/speed.component';
+import { PeersComponent } from './header/setting/peers/peers.component';
+import { NetworkComponent } from './header/setting/network/network.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent, DeleteComponent, SettingComponent],
+  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent, DeleteComponent, SettingComponent, TorrentsComponent, SpeedComponent, PeersComponent, NetworkComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

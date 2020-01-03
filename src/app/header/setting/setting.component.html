@@ -4,6 +4,34 @@
     <div class="modal-content">
       <div class="card">
         <div class="modal-form">
+          <div class="tabs">
+            <ul>
+              <li
+                [ngClass]="activeTab == 'torrents' ? 'is-active' : ''"
+                (click)="onClickTorrents()"
+              >
+                <a>Torrents</a>
+              </li>
+              <li
+                [ngClass]="activeTab == 'speed' ? 'is-active' : ''"
+                (click)="onClickSpeed()"
+              >
+                <a>Speed</a>
+              </li>
+              <li
+                [ngClass]="activeTab == 'peers' ? 'is-active' : ''"
+                (click)="onClickPeers()"
+              >
+                <a>Peers</a>
+              </li>
+              <li
+                [ngClass]="activeTab == 'network' ? 'is-active' : ''"
+                (click)="onClickNetwork()"
+              >
+                <a>Network</a>
+              </li>
+            </ul>
+          </div>
           <label class="label">Files</label>
           <div class="file has-name">
             <label class="file-label">
@@ -55,7 +83,7 @@
 
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-link" (click)="upload()">Upload</button>
+              <button class="button is-link" (click)="save()">Save</button>
             </div>
             <div class="control">
               <button class="button is-link is-light" (click)="cancel()">
