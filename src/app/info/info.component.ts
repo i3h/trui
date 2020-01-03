@@ -17,6 +17,7 @@ import { DataService } from "../data.service";
 })
 export class InfoComponent implements OnInit {
   @Output() closeInfo = new EventEmitter<boolean>();
+  @Output() change = new EventEmitter<any>();
   @Input() torrent: any;
   activeTab: string = "details";
 
@@ -52,7 +53,7 @@ export class InfoComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["torrent"] && typeof this.torrent !== "undefined") {
-      console.log(this.torrent);
+      this.change.emit(this.torrent);
     }
   }
 }
