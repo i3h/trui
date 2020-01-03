@@ -20,9 +20,10 @@ import { TorrentsComponent } from './header/setting/torrents/torrents.component'
 import { SpeedComponent } from './header/setting/speed/speed.component';
 import { PeersComponent } from './header/setting/peers/peers.component';
 import { NetworkComponent } from './header/setting/network/network.component';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent, DeleteComponent, SettingComponent, TorrentsComponent, SpeedComponent, PeersComponent, NetworkComponent],
+  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent, DeleteComponent, SettingComponent, TorrentsComponent, SpeedComponent, PeersComponent, NetworkComponent, InfoComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
