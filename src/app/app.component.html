@@ -14,9 +14,12 @@
         ></app-list>
       </div>
     </div>
-    <div *ngIf="focusID" class="tile is-4 is-parent">
+    <div *ngIf="openInfo" class="tile is-4 is-parent">
       <div class="tile is-child">
-        <app-info></app-info>
+        <app-info
+          [torrent]="torrent"
+          (closeInfo)="onCloseInfo($event)"
+        ></app-info>
       </div>
     </div>
   </div>

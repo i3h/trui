@@ -17,12 +17,14 @@ import { DataService } from "./data.service";
 })
 export class AppComponent implements OnInit {
   @Output() change = new EventEmitter<any>();
+  @Output() focusChange = new EventEmitter<any>();
   torrents: any;
+  torrent: any;
   isRoot: boolean = window.location.pathname == "/" ? true : false;
   isMobile: boolean = window.innerWidth < 770;
   isRPCOK: boolean;
   isRPCBad: boolean;
-  focusID: string;
+  openInfo: boolean;
 
   constructor(
     private router: Router,
@@ -32,7 +34,17 @@ export class AppComponent implements OnInit {
   ) {}
 
   onFocus(id: any) {
-    this.focusID = id;
+    this.openInfo = true;
+    for (let i = 0; i < this.torrents.length; i++) {
+      if (this.torrents[i].id == id) {
+        this.torrent = this.torrents[i];
+        this.focusChange.emit(this.torrent);
+      }
+    }
+  }
+
+  onCloseInfo() {
+    this.openInfo = false;
   }
 
   ngOnInit() {
