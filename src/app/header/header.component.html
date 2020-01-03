@@ -20,7 +20,19 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item">
-        <button class="button is-primary is-light" (click)="onClickUpload()">
+        <button class="button is-primary is-light" (click)="onClickStart()">
+          Start
+        </button>
+      </a>
+
+      <a class="navbar-item">
+        <button class="button is-warning is-light" (click)="onClickStop()">
+          Stop
+        </button>
+      </a>
+
+      <a class="navbar-item">
+        <button class="button is-success is-light" (click)="onClickUpload()">
           Upload
         </button>
       </a>

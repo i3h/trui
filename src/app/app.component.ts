@@ -56,13 +56,13 @@ export class AppComponent implements OnInit {
       } else {
         this.isRPCOK = true;
         this.dataService.getTorrents().subscribe(res => {
-          if (res.result == "success") {
+          if (res != null && res.result == "success") {
             this.torrents = res.arguments.torrents;
           }
         });
         this.dataService.getSession().subscribe(res => {
           //console.log(res)
-          if (res.result == "success") {
+          if (res != null && res.result == "success") {
             /*
             this.session= res.arguments.torrents;
             this.change.emit(this.torrents);

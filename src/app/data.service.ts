@@ -190,4 +190,40 @@ export class DataService {
       })
     );
   }
+
+  startTorrents(data: any): Observable<any> {
+    let rpcData = {
+      method: "torrent-start",
+      arguments: {
+        ids: data.ids
+      }
+    };
+    let url = this.globalService.API_ENDPOINT;
+    return this.http.post(url, rpcData).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError(err => {
+        return of(null);
+      })
+    );
+  }
+
+  stopTorrents(data: any): Observable<any> {
+    let rpcData = {
+      method: "torrent-stop",
+      arguments: {
+        ids: data.ids
+      }
+    };
+    let url = this.globalService.API_ENDPOINT;
+    return this.http.post(url, rpcData).pipe(
+      map((res: Response) => {
+        return res;
+      }),
+      catchError(err => {
+        return of(null);
+      })
+    );
+  }
 }
