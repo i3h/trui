@@ -16,10 +16,10 @@ import { CsrfInterceptorService } from "./csrf-interceptor.service";
 import { UploadComponent } from './header/upload/upload.component';
 import { DeleteComponent } from './header/delete/delete.component';
 import { SettingComponent } from './header/setting/setting.component';
-import { TorrentsComponent } from './header/setting/torrents/torrents.component';
-import { SpeedComponent } from './header/setting/speed/speed.component';
-import { PeersComponent } from './header/setting/peers/peers.component';
-import { NetworkComponent } from './header/setting/network/network.component';
+import { SettingTorrentsComponent } from './header/setting/setting-torrents/setting-torrents.component';
+import { SettingSpeedComponent } from './header/setting/setting-speed/setting-speed.component';
+import { SettingPeersComponent } from './header/setting/setting-peers/setting-peers.component';
+import { SettingNetworkComponent } from './header/setting/setting-network/setting-network.component';
 import { InfoComponent } from './info/info.component';
 import { ChartsComponent } from './info/charts/charts.component';
 import { DetailsComponent } from './info/details/details.component';
@@ -27,7 +27,7 @@ import { TrackersComponent } from './info/trackers/trackers.component';
 import { FilesComponent } from './info/files/files.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent, DeleteComponent, SettingComponent, TorrentsComponent, SpeedComponent, PeersComponent, NetworkComponent, InfoComponent, ChartsComponent, DetailsComponent, TrackersComponent, FilesComponent],
+  declarations: [AppComponent, HeaderComponent, ListComponent, UploadComponent, DeleteComponent, SettingComponent, SettingTorrentsComponent, SettingSpeedComponent, SettingPeersComponent, SettingNetworkComponent, InfoComponent, ChartsComponent, DetailsComponent, TrackersComponent, FilesComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

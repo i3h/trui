@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TorrentsComponent } from './torrents.component';
+import { SettingPeersComponent } from './setting-peers.component';
 
-describe('TorrentsComponent', () => {
-  let component: TorrentsComponent;
-  let fixture: ComponentFixture<TorrentsComponent>;
+describe('SettingPeersComponent', () => {
+  let component: SettingPeersComponent;
+  let fixture: ComponentFixture<SettingPeersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TorrentsComponent ]
+      declarations: [ SettingPeersComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TorrentsComponent);
+    fixture = TestBed.createComponent(SettingPeersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

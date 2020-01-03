@@ -80,10 +80,14 @@
           </div>
 
           <div class="spacing"></div>
-          <app-torrents *ngIf="activeTab == 'torrents'"></app-torrents>
-          <app-speed *ngIf="activeTab == 'speed'"></app-speed>
-          <app-peers *ngIf="activeTab == 'peers'"></app-peers>
-          <app-network *ngIf="activeTab == 'network'"></app-network>
+          <app-setting-torrents
+            *ngIf="activeTab == 'torrents'"
+          ></app-setting-torrents>
+          <app-setting-speed *ngIf="activeTab == 'speed'"></app-setting-speed>
+          <app-setting-peers *ngIf="activeTab == 'peers'"></app-setting-peers>
+          <app-setting-network
+            *ngIf="activeTab == 'network'"
+          ></app-setting-network>
         </div>
       </div>
     </div>
