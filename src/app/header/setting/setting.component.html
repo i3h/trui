@@ -1,100 +1,50 @@
-<div>
-  <div class="modal is-active">
-    <div class="modal-background" (click)="onClickBackground()"></div>
-    <div class="modal-content">
-      <div class="card">
-        <div class="modal-form">
-          <div class="tabs">
-            <ul>
-              <li
-                [ngClass]="activeTab == 'torrents' ? 'is-active' : ''"
-                (click)="onClickTorrents()"
-              >
-                <a>Torrents</a>
-              </li>
-              <li
-                [ngClass]="activeTab == 'speed' ? 'is-active' : ''"
-                (click)="onClickSpeed()"
-              >
-                <a>Speed</a>
-              </li>
-              <li
-                [ngClass]="activeTab == 'peers' ? 'is-active' : ''"
-                (click)="onClickPeers()"
-              >
-                <a>Peers</a>
-              </li>
-              <li
-                [ngClass]="activeTab == 'network' ? 'is-active' : ''"
-                (click)="onClickNetwork()"
-              >
-                <a>Network</a>
-              </li>
-            </ul>
-          </div>
-          <label class="label">Files</label>
-          <div class="file has-name">
-            <label class="file-label">
-              <form method="post" enctype="multipart/form-data">
-                <input
-                  class="file-input"
-                  type="file"
-                  name="torrents"
-                  multiple
-                  (change)="handleFilesInput($event)"
-                />
-              </form>
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fas fa-upload"></i>
-                </span>
-                <span class="file-label">
-                  Choose files ...
-                </span>
-              </span>
-              <span class="file-name">
-                {{ uploadedNotice }}
-              </span>
-            </label>
-          </div>
-          <p class="help is-danger" *ngIf="noFilesChosen">
-            Please choose files
-          </p>
-
-          <div class="spacing"></div>
-
-          <div class="field">
-            <label class="label">Download location</label>
-            <div class="control">
-              <input
-                class="input"
-                [ngClass]="download_dir_error ? 'is-danger' : ''"
-                type="text"
-                placeholder="Path input"
-                [(ngModel)]="download_dir"
-              />
-            </div>
-            <p class="help is-danger" *ngIf="download_dir_error">
-              This path is invalid
-            </p>
-          </div>
-
-          <div class="spacing"></div>
-          <app-setting-torrents
-            *ngIf="activeTab == 'torrents'"
-          ></app-setting-torrents>
-          <app-setting-speed *ngIf="activeTab == 'speed'"></app-setting-speed>
-          <app-setting-peers *ngIf="activeTab == 'peers'"></app-setting-peers>
-          <app-setting-network
-            *ngIf="activeTab == 'network'"
-          ></app-setting-network>
+<div class="modal is-active">
+  <div class="modal-background" (click)="onClickBackground()"></div>
+  <div class="modal-content">
+    <div class="card">
+      <div class="modal-form">
+        <div class="tabs">
+          <ul>
+            <li
+              [ngClass]="activeTab == 'torrents' ? 'is-active' : ''"
+              (click)="onClickTorrents()"
+            >
+              <a>Torrents</a>
+            </li>
+            <li
+              [ngClass]="activeTab == 'speed' ? 'is-active' : ''"
+              (click)="onClickSpeed()"
+            >
+              <a>Speed</a>
+            </li>
+            <li
+              [ngClass]="activeTab == 'peers' ? 'is-active' : ''"
+              (click)="onClickPeers()"
+            >
+              <a>Peers</a>
+            </li>
+            <li
+              [ngClass]="activeTab == 'network' ? 'is-active' : ''"
+              (click)="onClickNetwork()"
+            >
+              <a>Network</a>
+            </li>
+          </ul>
         </div>
+        <app-setting-torrents
+          *ngIf="activeTab == 'torrents'"
+        ></app-setting-torrents>
+        <app-setting-speed *ngIf="activeTab == 'speed'"></app-setting-speed>
+        <app-setting-peers *ngIf="activeTab == 'peers'"></app-setting-peers>
+        <app-setting-network
+          *ngIf="activeTab == 'network'"
+        ></app-setting-network>
       </div>
     </div>
-    <button
-      class="modal-close is-large"
-      aria-label="close"
-      (click)="onClickClose()"
-    ></button>
   </div>
+  <button
+    class="modal-close is-large"
+    aria-label="close"
+    (click)="onClickClose()"
+  ></button>
 </div>

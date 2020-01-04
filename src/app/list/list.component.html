@@ -1,55 +1,57 @@
-<table class="table is-fullwidth">
-  <thead>
-    <tr>
-      <th>
-        <mat-checkbox
-          [(ngModel)]="checkedAll"
-          (click)="onCheckAll()"
-        ></mat-checkbox>
-      </th>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Progress</th>
-      <th></th>
-      <th *ngIf="!shortMode"></th>
-      <th *ngIf="!shortMode">Size</th>
-      <th *ngIf="!shortMode">Upload</th>
-      <th *ngIf="!shortMode">Ratio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="let el of torrents"
-      [ngClass]="el.id == focusID ? 'focused' : ''"
-      (click)="onClick(el)"
-    >
-      <td>
-        <mat-checkbox
-          [(ngModel)]="el.checked"
-          (click)="onClickCheck(el)"
-        ></mat-checkbox>
-      </td>
-      <td>{{ el.id }}</td>
-      <td>{{ el.name }}</td>
-      <td>
-        <font color="{{ el.statusColor }}">{{ el.status }}</font>
-      </td>
-      <td>
-        <progress
-          class="progress is-small"
-          value="{{ el.progressValue }}"
-          max="100"
-          [ngClass]="el.progressColor"
-        ></progress>
-      </td>
-      <td *ngIf="!shortMode">{{ el.progressText }}</td>
-      <td *ngIf="!shortMode" style="width:20em">
-        <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
-      </td>
-      <td *ngIf="!shortMode">{{ el.sizeText }}</td>
-      <td *ngIf="!shortMode">{{ el.uploadedEver }}</td>
-      <td *ngIf="!shortMode">{{ el.uploadRatio }}</td>
-    </tr>
-  </tbody>
-</table>
+<div style="overflow:auto">
+  <table class="table is-fullwidth">
+    <thead>
+      <tr>
+        <th>
+          <mat-checkbox
+            [(ngModel)]="checkedAll"
+            (click)="onCheckAll()"
+          ></mat-checkbox>
+        </th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Progress</th>
+        <th></th>
+        <th *ngIf="!shortMode"></th>
+        <th *ngIf="!shortMode">Size</th>
+        <th *ngIf="!shortMode">Upload</th>
+        <th *ngIf="!shortMode">Ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let el of torrents"
+        [ngClass]="el.id == focusID ? 'focused' : ''"
+        (click)="onClick(el)"
+      >
+        <td>
+          <mat-checkbox
+            [(ngModel)]="el.checked"
+            (click)="onClickCheck(el)"
+          ></mat-checkbox>
+        </td>
+        <td>{{ el.id }}</td>
+        <td>{{ el.name }}</td>
+        <td>
+          <font color="{{ el.statusColor }}">{{ el.status }}</font>
+        </td>
+        <td>
+          <progress
+            class="progress is-small"
+            value="{{ el.progressValue }}"
+            max="100"
+            [ngClass]="el.progressColor"
+          ></progress>
+        </td>
+        <td *ngIf="!shortMode">{{ el.progressText }}</td>
+        <td *ngIf="!shortMode" style="width:20em">
+          <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
+        </td>
+        <td *ngIf="!shortMode">{{ el.sizeText }}</td>
+        <td *ngIf="!shortMode">{{ el.uploadedEver }}</td>
+        <td *ngIf="!shortMode">{{ el.uploadRatio }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,1 +1,57 @@
-<p>torrents works!</p>
+<div class="field">
+  <label class="label">Downloading</label>
+  <div class="control">
+    Download to:
+    <input
+      class="input"
+      [ngClass]="download_dir_error ? 'is-danger' : ''"
+      type="text"
+      placeholder="Path input"
+      [(ngModel)]="download_dir"
+    />
+  </div>
+  <p class="help is-danger" *ngIf="download_dir_error">
+    This path is invalid
+  </p>
+  <div class="spacing"></div>
+  <div class="control">
+    <label class="checkbox">
+      <mat-checkbox [(ngModel)]="delete_local_data"></mat-checkbox>
+      Start when added
+    </label>
+  </div>
+  <div class="spacing"></div>
+  <div class="control">
+    <label class="checkbox">
+      <mat-checkbox [(ngModel)]="delete_local_data"></mat-checkbox>
+      Append ".part" to incomplete files' names
+    </label>
+  </div>
+  <div class="spacing"></div>
+  <label class="label">Seeding</label>
+  <div class="control">
+    <label class="checkbox">
+      <mat-checkbox [(ngModel)]="delete_local_data"></mat-checkbox>
+      Stop seeding at ratio
+      <input
+        class="input"
+        type="text"
+        placeholder="Path input"
+        [(ngModel)]="download_dir"
+      />
+    </label>
+  </div>
+  <div class="spacing"></div>
+  <div class="control">
+    <label class="checkbox">
+      <mat-checkbox [(ngModel)]="delete_local_data"></mat-checkbox>
+      Stop seeding if idle for (min)
+      <input
+        class="input"
+        type="text"
+        placeholder="Path input"
+        [(ngModel)]="download_dir"
+      />
+    </label>
+  </div>
+</div>

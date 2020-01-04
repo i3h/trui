@@ -21,6 +21,7 @@ const ESCAPE = 27;
 export class SettingComponent implements OnInit {
   @Output() closeSetting = new EventEmitter<boolean>();
   activeTab: string = "torrents";
+  settings = {};
 
   constructor(
     private router: Router,

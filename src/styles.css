@@ -37,6 +37,18 @@ body {
   display: flex;
 }
 
+.spacing {
+  margin: 20px 0 20px 0;
+}
+
+.spacing-v {
+  margin: 20px 0 20px 0;
+}
+
+.spacing-h {
+  margin: 0px 20px 0px 20px;
+}
+
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
