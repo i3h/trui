@@ -34,7 +34,7 @@ jobs:
       - name: build
         run: |
           ng build --prod
-          tar -C $PWD -cvzf seedbox.tar.gz dist/my-app
+          tar -C $PWD/dist/my-app -cvzf seedbox.tar.gz ./
       # upload
       - uses: actions/upload-release-asset@v1.0.1
         env:
@@ -44,3 +44,12 @@ jobs:
           asset_path: ./seedbox.tar.gz
           asset_name: seedbox.tar.gz
           asset_content_type: application/gzip
+      # deploy
+      - name: deploy
+        uses: noobly314/actions/rsync@master
+        env:
+          SERVER: ${{ secrets.SERVER_IP }}
+          USERNAME: root
+          KEY: ${{ secrets.PRIVATE_KEY }}
+          SRC: ./dist/my-app/
+          DEST: /var/www/seedbox
