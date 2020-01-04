@@ -32,4 +32,40 @@
   </div>
 </div>
 
+<div *ngIf="isMobile" class="wrapper">
+  <app-header
+    [torrents]="torrents"
+    [openMenu]="openMenu"
+    (click)="onOpenMenu()"
+  ></app-header>
+  <div class="row-container flex-container col-12 spacing">
+    <div *ngIf="isRPCBad">Please check your transmission-daemon service.</div>
+  </div>
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-parent">
+      <div class="tile is-child">
+        <div class="unselectable">
+          <app-list
+            *ngIf="isRPCOK && focusID == null"
+            [torrents]="torrents"
+            [focusID]="focusID"
+            [checkedAll]="checkedAll"
+            [shortMode]="shortMode"
+            (focus)="onFocus($event)"
+            (check)="onCheck($event)"
+            (checkAll)="onCheckAll($event)"
+          ></app-list>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="openInfo" class="tile is-6 is-parent">
+      <div class="tile is-child">
+        <app-info
+          [torrent]="torrent"
+          (closeInfo)="onCloseInfo($event)"
+        ></app-info>
+      </div>
+    </div>
+  </div>
+</div>
 <router-outlet></router-outlet>

@@ -16,7 +16,9 @@ import { DataService } from "../data.service";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
+  isMobile: boolean = window.innerWidth < 1024;
   @Input() torrents: any;
+  @Input() openMenu: boolean;
   openUpload: boolean;
   openDelete: boolean;
   openSetting: boolean;

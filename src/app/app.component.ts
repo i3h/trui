@@ -17,12 +17,13 @@ import { TorrentService } from "./torrent.service";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  isMobile: boolean = window.innerWidth < 770;
+  isMobile: boolean = window.innerWidth < 1024;
   torrents: any;
   torrent: any;
   isRPCOK: boolean;
   isRPCBad: boolean;
   openInfo: boolean;
+  openMenu: boolean;
   shortMode: boolean;
   focusID: string;
   checkedAll: boolean = false;
@@ -74,6 +75,10 @@ export class AppComponent implements OnInit {
     this.openInfo = false;
     this.shortMode = false;
     this.focusID = null;
+  }
+
+  onOpenMenu() {
+    this.openMenu = !this.openMenu;
   }
 
   ngOnInit() {

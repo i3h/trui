@@ -9,8 +9,9 @@
     <a
       role="button"
       class="navbar-burger burger"
+      [ngClass]="openMenu ? 'is-active' : ''"
       aria-label="menu"
-      aria-expanded="false"
+      aria-expanded="true"
       data-target="navbarBasicExample"
     >
       <span aria-hidden="true"></span>
@@ -19,7 +20,11 @@
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div
+    id="navbarBasicExample"
+    class="navbar-menu"
+    [ngClass]="openMenu ? 'is-active' : ''"
+  >
     <div class="navbar-start">
       <a class="navbar-item">
         <button class="button is-primary is-light" (click)="onClickStart()">
@@ -54,7 +59,7 @@
 			-->
     </div>
 
-    <div class="navbar-end">
+    <div *ngIf="!isMobile" class="navbar-end">
       <div
         class="navbar-item global-data unselectable"
         style="width:40em"

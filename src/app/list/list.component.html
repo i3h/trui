@@ -1,57 +1,96 @@
-<div style="overflow:auto">
-  <table class="table is-fullwidth">
-    <thead>
-      <tr>
-        <th>
-          <mat-checkbox
-            [(ngModel)]="checkedAll"
-            (click)="onCheckAll()"
-          ></mat-checkbox>
-        </th>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Progress</th>
-        <th></th>
-        <th *ngIf="!shortMode"></th>
-        <th *ngIf="!shortMode">Size</th>
-        <th *ngIf="!shortMode">Upload</th>
-        <th *ngIf="!shortMode">Ratio</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let el of torrents"
-        [ngClass]="el.id == focusID ? 'focused' : ''"
-        (click)="onClick(el)"
-      >
-        <td>
-          <mat-checkbox
-            [(ngModel)]="el.sbChecked"
-            (click)="onClickCheck(el)"
-          ></mat-checkbox>
-        </td>
-        <td>{{ el.id }}</td>
-        <td>{{ el.name }}</td>
-        <td style="width:10em">
-          <font color="{{ el.sbStatusColor }}">{{ el.sbStatus }}</font>
-        </td>
-        <td>
-          <progress
-            class="progress is-small"
-            value="{{ el.sbProgressValue }}"
-            max="100"
-            [ngClass]="el.sbProgressColor"
-          ></progress>
-        </td>
-        <td *ngIf="!shortMode">{{ el.sbProgressText }}</td>
-        <td *ngIf="!shortMode" style="width:20em">
-          <font color="{{ el.sbRateColor }}">{{ el.sbRateText }}</font>
-        </td>
-        <td *ngIf="!shortMode">{{ el.sbSizeText }}</td>
-        <td *ngIf="!shortMode">{{ el.sbUploadedEver }}</td>
-        <td *ngIf="!shortMode">{{ el.sbUploadRatio }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="!isMobile">
+  <div style="overflow:auto">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>
+            <mat-checkbox
+              [(ngModel)]="checkedAll"
+              (click)="onCheckAll()"
+            ></mat-checkbox>
+          </th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Progress</th>
+          <th></th>
+          <th *ngIf="!shortMode"></th>
+          <th *ngIf="!shortMode">Size</th>
+          <th *ngIf="!shortMode">Upload</th>
+          <th *ngIf="!shortMode">Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let el of torrents"
+          [ngClass]="el.id == focusID ? 'focused' : ''"
+          (click)="onClick(el)"
+        >
+          <td>
+            <mat-checkbox
+              [(ngModel)]="el.sbChecked"
+              (click)="onClickCheck(el)"
+            ></mat-checkbox>
+          </td>
+          <td>{{ el.id }}</td>
+          <td>{{ el.name }}</td>
+          <td style="width:10em">
+            <font color="{{ el.sbStatusColor }}">{{ el.sbStatus }}</font>
+          </td>
+          <td>
+            <progress
+              class="progress is-small"
+              value="{{ el.sbProgressValue }}"
+              max="100"
+              [ngClass]="el.sbProgressColor"
+            ></progress>
+          </td>
+          <td *ngIf="!shortMode">{{ el.sbProgressText }}</td>
+          <td *ngIf="!shortMode" style="width:20em">
+            <font color="{{ el.sbRateColor }}">{{ el.sbRateText }}</font>
+          </td>
+          <td *ngIf="!shortMode">{{ el.sbSizeText }}</td>
+          <td *ngIf="!shortMode">{{ el.sbUploadedEver }}</td>
+          <td *ngIf="!shortMode">{{ el.sbUploadRatio }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="isMobile">
+  <div style="overflow:auto">
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th>
+            <mat-checkbox
+              [(ngModel)]="checkedAll"
+              (click)="onCheckAll()"
+            ></mat-checkbox>
+          </th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let el of torrents"
+          [ngClass]="el.id == focusID ? 'focused' : ''"
+          (click)="onClick(el)"
+        >
+          <td>
+            <mat-checkbox
+              [(ngModel)]="el.sbChecked"
+              (click)="onClickCheck(el)"
+            ></mat-checkbox>
+          </td>
+          <td>
+            {{ el.name }}
+            <br /><font color="{{ el.sbRateColor }}">{{ el.sbRateText }}</font>
+            <br />Size: {{ el.sbSizeText }} {{ el.sbProgressText }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

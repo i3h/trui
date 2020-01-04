@@ -16,6 +16,7 @@ import { DataService } from "../data.service";
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
+  isMobile: boolean = window.innerWidth < 1024;
   @Output() focus = new EventEmitter<any>();
   @Output() check = new EventEmitter<any>();
   @Output() checkAll = new EventEmitter<any>();
