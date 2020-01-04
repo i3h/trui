@@ -42,9 +42,14 @@ export class ListComponent implements OnInit {
   }
 
   onCheckAll() {
-    console.log("list checkedAll: ", this.checkedAll);
     this.checkAll.emit();
   }
 
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["checkedAll"] && typeof this.checkedAll !== "undefined") {
+      this.checkedAll = !this.checkedAll;
+    }
+  }
 }

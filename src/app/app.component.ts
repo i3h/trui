@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   openMenu: boolean;
   shortMode: boolean;
   focusID: string;
-  checkedAll: boolean = false;
+  checkedAll: boolean;
 
   constructor(
     private router: Router,
@@ -56,16 +56,15 @@ export class AppComponent implements OnInit {
   }
 
   onCheckAll() {
-    console.log("main checkedall: ", this.checkedAll);
     this.checkedAll = !this.checkedAll;
     if (this.checkedAll) {
       for (let i = 0; i < this.torrents.length; i++) {
-        this.torrents[i].checked = true;
+        this.torrents[i].sbChecked = true;
         this.globalService.addToCheckedList(this.torrents[i].id);
       }
     } else {
       for (let i = 0; i < this.torrents.length; i++) {
-        this.torrents[i].checked = false;
+        this.torrents[i].sbChecked = false;
         this.globalService.deleteFromCheckedList(this.torrents[i].id);
       }
     }

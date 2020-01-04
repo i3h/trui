@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickStart() {
-    console.log("start");
+    //console.log("start");
     if (this.globalService.checkedList.length > 0) {
       let data = {
         ids: this.globalService.checkedList
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickStop() {
-    console.log("stop");
+    //console.log("stop");
     if (this.globalService.checkedList.length > 0) {
       let data = {
         ids: this.globalService.checkedList
