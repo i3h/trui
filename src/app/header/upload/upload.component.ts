@@ -93,9 +93,11 @@ export class UploadComponent implements OnInit {
         //console.log(res);
       });
     }
-
+    window.localStorage.setItem("lastDownloadDir", this.download_dir);
     this.closeUpload.emit(true);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.download_dir = window.localStorage.getItem("lastDownloadDir");
+  }
 }
