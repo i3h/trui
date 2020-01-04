@@ -33,8 +33,8 @@ jobs:
         run: npm install
       - name: build
         run: |
-          ng build --prod
-          tar -C $PWD/dist/my-app -cvzf seedbox.tar.gz ./
+          ng build --prod --output-path=dist/seedbox
+          tar -C $PWD/dist -cvzf seedbox.tar.gz seedbox
       # upload
       - uses: actions/upload-release-asset@v1.0.1
         env:
@@ -51,5 +51,5 @@ jobs:
           SERVER: ${{ secrets.SERVER_IP }}
           USERNAME: root
           KEY: ${{ secrets.PRIVATE_KEY }}
-          SRC: ./dist/my-app/
+          SRC: ./dist/seedbox/
           DEST: /var/www/seedbox
