@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
   }
 
   onCheck(el: any) {
-    if (el.checked) {
+    if (el.sbChecked) {
       this.globalService.deleteFromCheckedList(el.id);
     } else {
       this.globalService.addToCheckedList(el.id);

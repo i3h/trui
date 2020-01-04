@@ -2,7 +2,19 @@
 <div class="spacing"></div>
 <div><b>Hash:</b> {{ torrent.hashString }}</div>
 <div class="spacing"></div>
-<div><b>Error:</b> {{ torrent.errorString == "" ? "None" : torrent.errorString }}</div>
+<div><b>Directory:</b> {{ torrent.downloadDir }}</div>
+<div class="spacing"></div>
+<div><b>Size:</b> {{ torrent.sbSizeText }}</div>
+<div class="spacing"></div>
+<div><b>Progress:</b> {{ torrent.sbProgressValue }}%</div>
+<div class="spacing"></div>
+<div><b>Upload:</b> {{ torrent.sbUploadedEver }}</div>
+<div class="spacing"></div>
+<div><b>Ratio:</b> {{ torrent.sbUploadRatio }}</div>
+<div class="spacing"></div>
+<div>
+  <b>Error:</b> {{ torrent.errorString == "" ? "None" : torrent.errorString }}
+</div>
 <div class="spacing"></div>
 <div><b>Comment:</b> {{ torrent.comment }}</div>
 <div class="spacing"></div>

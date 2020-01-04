@@ -27,30 +27,30 @@
       >
         <td>
           <mat-checkbox
-            [(ngModel)]="el.checked"
+            [(ngModel)]="el.sbChecked"
             (click)="onClickCheck(el)"
           ></mat-checkbox>
         </td>
         <td>{{ el.id }}</td>
         <td>{{ el.name }}</td>
-        <td>
-          <font color="{{ el.statusColor }}">{{ el.status }}</font>
+        <td style="width:10em">
+          <font color="{{ el.sbStatusColor }}">{{ el.sbStatus }}</font>
         </td>
         <td>
           <progress
             class="progress is-small"
-            value="{{ el.progressValue }}"
+            value="{{ el.sbProgressValue }}"
             max="100"
-            [ngClass]="el.progressColor"
+            [ngClass]="el.sbProgressColor"
           ></progress>
         </td>
-        <td *ngIf="!shortMode">{{ el.progressText }}</td>
+        <td *ngIf="!shortMode">{{ el.sbProgressText }}</td>
         <td *ngIf="!shortMode" style="width:20em">
-          <font color="{{ el.rateColor }}">{{ el.rateText }}</font>
+          <font color="{{ el.sbRateColor }}">{{ el.sbRateText }}</font>
         </td>
-        <td *ngIf="!shortMode">{{ el.sizeText }}</td>
-        <td *ngIf="!shortMode">{{ el.uploadedEver }}</td>
-        <td *ngIf="!shortMode">{{ el.uploadRatio }}</td>
+        <td *ngIf="!shortMode">{{ el.sbSizeText }}</td>
+        <td *ngIf="!shortMode">{{ el.sbUploadedEver }}</td>
+        <td *ngIf="!shortMode">{{ el.sbUploadRatio }}</td>
       </tr>
     </tbody>
   </table>

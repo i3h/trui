@@ -28,19 +28,19 @@ export class TorrentService {
 
   setStatusCode() {
     if (this.torrent.status == 0) {
-      this.torrent.status = "Stopped";
+      this.torrent.sbStatus = "Stopped";
     } else if (this.torrent.status == 1) {
-      this.torrent.status = "Queued to check";
+      this.torrent.sbStatus = "Queued to check";
     } else if (this.torrent.status == 2) {
-      this.torrent.status = "Checking";
+      this.torrent.sbStatus = "Checking";
     } else if (this.torrent.status == 3) {
-      this.torrent.status = "Queued to download";
+      this.torrent.sbStatus = "Queued to download";
     } else if (this.torrent.status == 4) {
-      this.torrent.status = "Downloading";
+      this.torrent.sbStatus = "Downloading";
     } else if (this.torrent.status == 5) {
-      this.torrent.status = "Queued to seed";
+      this.torrent.sbStatus = "Queued to seed";
     } else if (this.torrent.status == 6) {
-      this.torrent.status = "Seeding";
+      this.torrent.sbStatus = "Seeding";
     }
   }
 
@@ -57,22 +57,22 @@ export class TorrentService {
   }
 
   setSizeText() {
-    this.torrent.sizeText = this.addUnit(this.torrent.totalSize);
+    this.torrent.sbSizeText = this.addUnit(this.torrent.totalSize);
   }
 
   setUploadedEver() {
-    this.torrent.uploadedEver = this.addUnit(this.torrent.uploadedEver);
+    this.torrent.sbUploadedEver = this.addUnit(this.torrent.uploadedEver);
   }
 
   calUploadRatio() {
-    this.torrent.uploadRatio = this.torrent.uploadRatio.toFixed(2).toString();
+    this.torrent.sbUploadRatio = this.torrent.uploadRatio.toFixed(2).toString();
   }
 
   setCheckedStatus() {
     if (this.globalService.checkedList.includes(this.torrent.id)) {
-      this.torrent.checked = true;
+      this.torrent.sbChecked = true;
     } else {
-      this.torrent.checked = false;
+      this.torrent.sbChecked = false;
     }
   }
 
@@ -81,43 +81,43 @@ export class TorrentService {
       (this.torrent.downloadedEver / this.torrent.totalSize) * 100
     );
     if (value < 100) {
-      this.torrent.progressValue = value;
+      this.torrent.sbProgressValue = value;
     } else {
-      this.torrent.progressValue = 100;
+      this.torrent.sbProgressValue = 100;
     }
   }
 
   setProgressText() {
-    this.torrent.progressText = this.torrent.progressValue + "%";
+    this.torrent.sbProgressText = this.torrent.sbProgressValue + "%";
   }
 
   setProgressColor() {
-    if (this.torrent.status == "Downloading") {
-      this.torrent.progressColor = "is-success";
-    } else if (this.torrent.status == "Seeding") {
-      this.torrent.progressColor = "is-info";
+    if (this.torrent.sbStatus == "Downloading") {
+      this.torrent.sbProgressColor = "is-success";
+    } else if (this.torrent.sbStatus == "Seeding") {
+      this.torrent.sbProgressColor = "is-info";
     } else {
-      this.torrent.progressColor = "";
+      this.torrent.sbProgressColor = "";
     }
   }
 
   setStatusColor() {
-    if (this.torrent.status == "Downloading") {
-      this.torrent.statusColor = "green";
-    } else if (this.torrent.status == "Seeding") {
-      this.torrent.statusColor = "#23A1D8";
+    if (this.torrent.sbStatus == "Downloading") {
+      this.torrent.sbStatusColor = "green";
+    } else if (this.torrent.sbStatus == "Seeding") {
+      this.torrent.sbStatusColor = "#23A1D8";
     } else {
-      this.torrent.statusColor = "";
+      this.torrent.sbStatusColor = "";
     }
   }
 
   setRateText() {
-    if (this.torrent.rateDownload != 0 || this.torrent.rateUpload != 0) {
-      this.torrent.rateColor = "green";
+    if (this.torrent.sbRateDownload != 0 || this.torrent.sbRateUpload != 0) {
+      this.torrent.sbRateColor = "green";
     }
-    this.torrent.rateText =
+    this.torrent.sbRateText =
       "D " + this.addUnit(this.torrent.rateDownload) + "/s";
-    this.torrent.rateText +=
+    this.torrent.sbRateText +=
       " | U " + this.addUnit(this.torrent.rateUpload) + "/s";
   }
 }

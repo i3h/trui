@@ -11,9 +11,9 @@ import { GlobalService } from "../../global.service";
 import { DataService } from "../../data.service";
 
 @Component({
-  selector: 'app-peers',
-  templateUrl: './peers.component.html',
-  styleUrls: ['./peers.component.css']
+  selector: "app-peers",
+  templateUrl: "./peers.component.html",
+  styleUrls: ["./peers.component.css"]
 })
 export class PeersComponent implements OnInit {
   @Input() torrent: any;
@@ -25,14 +25,5 @@ export class PeersComponent implements OnInit {
     private dataService: DataService
   ) {}
 
-  refreshTorrent() {}
-
   ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes["torrent"] && typeof this.torrent !== "undefined") {
-      this.refreshTorrent();
-      console.log(this.torrent);
-    }
-  }
 }
