@@ -1,0 +1,46 @@
+name: build
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  publish_release:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout code
+      - uses: actions/checkout@master
+      # create release
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: true
+      # build
+      - uses: actions/setup-node@master
+      - name: install angular cli globally
+        run: npm install -g @angular/cli
+      - name: install node package
+        run: npm install
+      - name: build
+        run: |
+          ng build --prod
+          tar -C $PWD -cvzf seedbox.tar.gz dist/my-app
+      # upload
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./seedbox.tar.gz
+          asset_name: seedbox.tar.gz
+          asset_content_type: application/gzip
