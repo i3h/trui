@@ -24,6 +24,7 @@ export class UploadComponent implements OnInit {
   metainfo: Array<string>;
   download_dir: string;
   download_dir_error: boolean;
+  start_when_added: boolean;
   noFilesChosen: boolean;
   uploadedNotice: string = "No files chosen";
 
@@ -85,7 +86,8 @@ export class UploadComponent implements OnInit {
     for (let i = 0; i < this.metainfo.length; i++) {
       let data = {
         metainfo: this.metainfo[i],
-        download_dir: this.download_dir
+        download_dir: this.download_dir,
+        paused: !this.start_when_added
       };
       this.dataService.uploadTorrents(data).subscribe(res => {
         //console.log(res);

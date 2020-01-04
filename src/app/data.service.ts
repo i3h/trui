@@ -158,7 +158,8 @@ export class DataService {
       method: "torrent-add",
       arguments: {
         metainfo: data.metainfo,
-        "download-dir": data.download_dir
+        "download-dir": data.download_dir,
+        paused: data.paused
       }
     };
     let url = this.globalService.API_ENDPOINT;

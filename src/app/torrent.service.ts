@@ -16,7 +16,7 @@ export class TorrentService {
     this.setStatusCode();
     this.setSizeText();
     this.setUploadedEver();
-    this.calUploadRatio();
+    this.setUploadRatio();
     this.setProgressValue();
     this.setProgressText();
     this.setProgressColor();
@@ -64,7 +64,7 @@ export class TorrentService {
     this.torrent.sbUploadedEver = this.addUnit(this.torrent.uploadedEver);
   }
 
-  calUploadRatio() {
+  setUploadRatio() {
     this.torrent.sbUploadRatio = this.torrent.uploadRatio.toFixed(2).toString();
   }
 
