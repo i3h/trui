@@ -76,7 +76,6 @@
         <tr
           *ngFor="let el of torrents"
           [ngClass]="el.id == focusID ? 'focused' : ''"
-          (click)="onClick(el)"
         >
           <td>
             <mat-checkbox
@@ -84,8 +83,9 @@
               (click)="onClickCheck(el)"
             ></mat-checkbox>
           </td>
-          <td>
+          <td (click)="onClick(el)">
             {{ el.name }}
+            <br /><font color="{{ el.sbStatusColor }}">{{ el.sbStatus }}</font>
             <br /><font color="{{ el.sbRateColor }}">{{ el.sbRateText }}</font>
             <br />Size: {{ el.sbSizeText }} {{ el.sbProgressText }}
           </td>
