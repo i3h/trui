@@ -15,15 +15,22 @@ import {
   repeat
 } from "rxjs/operators";
 import { GlobalService } from "./global.service";
+import { AppConfigService } from "./app-config.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class DataService {
-  constructor(private http: HttpClient, private globalService: GlobalService) {}
+  API_ENDPOINT = this.appConfigService.getConfig().api;
+
+  constructor(
+    private http: HttpClient,
+    private globalService: GlobalService,
+    private appConfigService: AppConfigService
+  ) {}
 
   rpc(): Observable<any> {
-    let url = this.globalService.API_ENDPOINT;
+    let url = this.API_ENDPOINT;
     return this.http.post(url, "").pipe(
       map((res: Response) => {
         return res;
@@ -40,7 +47,7 @@ export class DataService {
       method: "session-get"
     };
     let rpcData = JSON.stringify(data);
-    let url = this.globalService.API_ENDPOINT;
+    let url = this.API_ENDPOINT;
     return of({}).pipe(
       mergeMap(() => {
         return this.http.post(url, rpcData).pipe(
@@ -136,7 +143,7 @@ export class DataService {
       }
     };
     let rpcData = JSON.stringify(data);
-    let url = this.globalService.API_ENDPOINT;
+    let url = this.API_ENDPOINT;
     return of({}).pipe(
       mergeMap(() => {
         return this.http.post(url, rpcData).pipe(
@@ -162,7 +169,7 @@ export class DataService {
         paused: data.paused
       }
     };
-    let url = this.globalService.API_ENDPOINT;
+    let url = this.API_ENDPOINT;
     return this.http.post(url, rpcData).pipe(
       map((res: Response) => {
         return res;
@@ -181,7 +188,7 @@ export class DataService {
         "delete-local-data": data.delete_local_data
       }
     };
-    let url = this.globalService.API_ENDPOINT;
+    let url = this.API_ENDPOINT;
     return this.http.post(url, rpcData).pipe(
       map((res: Response) => {
         return res;
@@ -199,7 +206,7 @@ export class DataService {
         ids: data.ids
       }
     };
-    let url = this.globalService.API_ENDPOINT;
+    let url = this.API_ENDPOINT;
     return this.http.post(url, rpcData).pipe(
       map((res: Response) => {
         return res;
@@ -217,7 +224,7 @@ export class DataService {
         ids: data.ids
       }
     };
-    let url = this.globalService.API_ENDPOINT;
+    let url = this.API_ENDPOINT;
     return this.http.post(url, rpcData).pipe(
       map((res: Response) => {
         return res;

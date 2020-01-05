@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class GlobalService {
-  API_ENDPOINT: string = "http://seedbox/transmission/rpc";
+  //API_ENDPOINT: string = "http://seedbox/transmission/rpc";
   checkedList: string[] = [];
 
   constructor() {}
