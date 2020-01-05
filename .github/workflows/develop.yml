@@ -1,0 +1,31 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  publish_release:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout code
+      - uses: actions/checkout@master
+      # build
+      - uses: actions/setup-node@master
+      - name: install angular cli globally
+        run: npm install -g @angular/cli
+      - name: install node package
+        run: npm install
+      - name: build
+        run: |
+          ng build --prod --output-path=dist/seedbox
+      # deploy
+      - name: deploy
+        uses: noobly314/actions/rsync@master
+        env:
+          SERVER: ${{ secrets.SERVER_IP }}
+          USERNAME: root
+          KEY: ${{ secrets.PRIVATE_KEY }}
+          SRC: ./dist/seedbox/
+          DEST: /var/www/seedbox
