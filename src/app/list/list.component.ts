@@ -24,6 +24,7 @@ export class ListComponent implements OnInit {
   @Input() shortMode: any;
   @Input() focusID: string;
   @Input() checkedAll: boolean;
+  clickCount: number;
 
   constructor(
     private router: Router,
@@ -33,8 +34,18 @@ export class ListComponent implements OnInit {
   ) {}
 
   onClick(el) {
-    //this.focusID = el.id;
-    this.focus.emit(el.id);
+    if (this.focusID == null) {
+      this.clickCount++;
+      if (this.clickCount > 1) {
+        this.focus.emit(el.id);
+      } else {
+        setTimeout(() => {
+          this.clickCount = 0;
+        }, 500);
+      }
+    } else {
+      this.focus.emit(el.id);
+    }
   }
 
   onClickCheck(el: any) {
