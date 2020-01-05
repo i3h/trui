@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
   ) {}
 
   onClick(el) {
-    if (this.focusID == null) {
+    if (this.focusID == null && !this.isMobile) {
       this.clickCount++;
       if (this.clickCount > 1) {
         this.focus.emit(el.id);
