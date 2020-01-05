@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, forkJoin, of, concat, pipe } from "rxjs";
+import { Observable, forkJoin, of, concat, pipe, timer, from } from "rxjs";
 import {
   map,
   catchError,
@@ -48,7 +48,7 @@ export class DataService {
     };
     let rpcData = JSON.stringify(data);
     let url = this.API_ENDPOINT;
-    return of({}).pipe(
+    return timer(0, 3000).pipe(
       mergeMap(() => {
         return this.http.post(url, rpcData).pipe(
           map((res: Response) => {
@@ -58,9 +58,7 @@ export class DataService {
             return of(null);
           })
         );
-      }),
-      delay(3000),
-      repeat()
+      })
     );
   }
 
@@ -144,7 +142,8 @@ export class DataService {
     };
     let rpcData = JSON.stringify(data);
     let url = this.API_ENDPOINT;
-    return of({}).pipe(
+    let count = 0;
+    return timer(0, 3000).pipe(
       mergeMap(() => {
         return this.http.post(url, rpcData).pipe(
           map((res: Response) => {
@@ -154,9 +153,7 @@ export class DataService {
             return of(null);
           })
         );
-      }),
-      delay(3000),
-      repeat()
+      })
     );
   }
 

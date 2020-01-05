@@ -25,14 +25,11 @@ export class DetailsComponent implements OnInit {
     private dataService: DataService
   ) {}
 
-  refreshTorrent() {}
-
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["torrent"] && typeof this.torrent !== "undefined") {
-      this.refreshTorrent();
-      console.log(this.torrent);
+      //console.log(this.torrent);
     }
   }
 }
