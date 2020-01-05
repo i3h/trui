@@ -24,7 +24,7 @@
         <tr
           *ngFor="let el of torrents"
           [ngClass]="el.id == focusID ? 'focused' : ''"
-          (click)="onClick(el)"
+          (dblclick)="onClick(el)"
         >
           <td>
             <mat-checkbox

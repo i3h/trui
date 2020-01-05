@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   torrent: any;
   isRPCOK: boolean;
   isRPCBad: boolean;
+  rpcErrMsg: string;
   openInfo: boolean;
   openMenu: boolean;
   shortMode: boolean;
@@ -82,9 +83,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.rpc().subscribe(res => {
-      if (res.status == 502) {
+      if (res.ok == false && res.status != 409) {
+        console.log(res);
         this.isRPCBad = true;
-        //console.log("502 error");
+        this.rpcErrMsg = res.message;
       } else {
         this.isRPCOK = true;
         this.dataService.getTorrents().subscribe(res => {
