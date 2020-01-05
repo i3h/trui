@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, APP_INITIALIZER } from "@angular/core";
+import { AppConfigService } from "./app-config.service";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 
@@ -25,6 +26,12 @@ import { DetailsComponent } from "./info/details/details.component";
 import { PeersComponent } from "./info/peers/peers.component";
 import { TrackersComponent } from "./info/trackers/trackers.component";
 import { FilesComponent } from "./info/files/files.component";
+
+const appInitializerFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadConfig();
+  };
+};
 
 @NgModule({
   declarations: [
@@ -54,6 +61,13 @@ import { FilesComponent } from "./info/files/files.component";
     MatRippleModule
   ],
   providers: [
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [AppConfigService]
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CsrfInterceptorService,
