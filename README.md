@@ -4,7 +4,7 @@ Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/
 
 # Features
 
-- [x] Basic actions including start, stop, upload, delete torrents
+- [x] Basic actions including start, stop, upload and delete torrents
 - [x] Showing details of specific torrent
 - [x] Mobile friendly UI
 - [ ] More setting options provided by original web interface
