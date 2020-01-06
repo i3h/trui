@@ -2,11 +2,18 @@
 
 Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/transmission), with newer and nicer look.
 
+# Features
+
+- [x] Basic actions including start, stop, upload, delete torrents
+- [x] Showing details of specific torrent
+- [x] Mobile friendly UI
+- [ ] More setting options provided by original web interface
+
 # Installation
 
-1. Download latest [release](https://github.com/noobly314/seedbox/releases/latest) and extract it to the directory where you are going to serve static files.
+1. Download latest [release](https://github.com/noobly314/seedbox/releases/latest) and extract it to the directory where you will serve static files.
 
-2. Edit the configuration file named `appConfig.json`. Replace your own RPC endpoint of transmission-daemon in this file. Please visit api address in browser to make sure it works properly. You should see 409 Conflict error.
+2. Edit the configuration file named `appConfig.json`. Replace your own RPC endpoint of transmission-daemon in this file. Please visit rpc address in browser to make sure it works properly. You should see 409 Conflict error.
 
 ```
 // replace api
@@ -15,7 +22,7 @@ Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/
 }
 ```
 
-3. Serve seedbox static files with Nginx, Apache or whatever you like. Please note that the scheme, hostname and port of api must be same with those of your web service. Transmission team does not support CORS for security reason, so you must follow this rule.
+3. Serve seedbox static files with Nginx, Apache or whatever you like. Please note that the scheme, hostname and port of rpc must be same with those of your web service. Transmission does not support CORS for security reason, so you must follow this rule.
 
 ```
 // Nginx example configuration
@@ -41,3 +48,11 @@ server {
 ```
 
 # Demo
+
+![demo1](demo/seedbox-demo-1.png)
+
+![demo2](demo/seedbox-demo-2.png)
+
+# License
+
+See the [LICENSE](https://github.com/noobly314/seedbox/blob/master/LICENSE.md) file for license rights and limitations (MIT).
