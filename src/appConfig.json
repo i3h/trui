@@ -1,3 +1,4 @@
 {
-  "api": "http://seedbox/transmission/rpc"
+  "api": "http://seedbox/transmission/rpc",
+  "version": "v0.1.0"
 }

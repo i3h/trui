@@ -1,0 +1,22 @@
+<div>
+  <div class="modal is-active">
+    <div class="modal-background" (click)="onClickBackground()"></div>
+    <div class="modal-content">
+      <div class="card">
+        <div class="modal-form">
+          <b>Version: </b> {{ version }}
+          <div class="spacing"></div>
+          <br /><b>Author: </b> Noobly
+          <div class="spacing"></div>
+          <br /><b>GitHub: </b>
+          <a href="https://github.com/noobly314/seedbox">Seedbox</a>
+        </div>
+      </div>
+    </div>
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      (click)="onClickClose()"
+    ></button>
+  </div>
+</div>

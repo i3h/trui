@@ -55,18 +55,35 @@
           Setting
         </button>
       </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item" (click)="onClickAbout()">
+            About
+          </a>
+          <hr class="navbar-divider" />
+          <a
+            class="navbar-item"
+            href="https://github.com/noobly314/seedbox/issues"
+            target="_blank"
+          >
+            Report an issue
+          </a>
+        </div>
+      </div>
     </div>
 
     <div *ngIf="!isMobile" class="navbar-end">
-      <div
-        class="navbar-item global-data unselectable"
-        style="width:30em"
-        *ngIf="filesNum"
-      >
+      <div class="navbar-item global-data unselectable" *ngIf="filesNum">
         {{ filesNum }} files&nbsp;
         <font color="{{ rateColor }}">{{ rateText }}</font>
       </div>
 
+      <!--
       <div class="navbar-item">
         <a href="https://github.com/noobly314/seedbox" target="_blank">
           <svg
@@ -91,6 +108,7 @@
           </svg>
         </a>
       </div>
+			-->
     </div>
   </div>
 </nav>
@@ -106,3 +124,4 @@
   *ngIf="openSetting"
   (closeSetting)="onCloseSetting($event)"
 ></app-setting>
+<app-about *ngIf="openAbout" (closeAbout)="onCloseAbout($event)"></app-about>

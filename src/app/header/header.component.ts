@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   openUpload: boolean;
   openDelete: boolean;
   openSetting: boolean;
+  openAbout: boolean;
   filesNum: number;
   rateText: string;
   rateColor: string;
@@ -111,6 +112,14 @@ export class HeaderComponent implements OnInit {
 
   onCloseSetting() {
     this.openSetting = false;
+  }
+
+  onClickAbout() {
+    this.openAbout = true;
+  }
+
+  onCloseAbout() {
+    this.openAbout = false;
   }
 
   ngOnInit() {}

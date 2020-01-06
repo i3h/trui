@@ -27,6 +27,7 @@ import { PeersComponent } from "./info/peers/peers.component";
 import { TrackersComponent } from "./info/trackers/trackers.component";
 import { FilesComponent } from "./info/files/files.component";
 import { SettingRPCComponent } from './header/setting/setting-rpc/setting-rpc.component';
+import { AboutComponent } from './header/about/about.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -51,7 +52,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     PeersComponent,
     TrackersComponent,
     FilesComponent,
-    SettingRPCComponent
+    SettingRPCComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

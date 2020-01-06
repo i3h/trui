@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
+import { AppConfigService } from "./app-config.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class GlobalService {
-  //API_ENDPOINT: string = "http://seedbox/transmission/rpc";
+  VERSION = this.appConfigService.getConfig().version;
   checkedList: string[] = [];
 
-  constructor() {}
+  constructor(private appConfigService: AppConfigService) {}
 
   addToCheckedList(id: string) {
     let index = this.checkedList.indexOf(id);

@@ -21,7 +21,6 @@ import { AppConfigService } from "./app-config.service";
   providedIn: "root"
 })
 export class DataService {
-  //API_ENDPOINT = this.appConfigService.getConfig().api;
   API_ENDPOINT = this.appConfigService.getAPI();
 
   constructor(
