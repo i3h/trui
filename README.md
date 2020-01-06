@@ -4,34 +4,42 @@ Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/
 
 # Features
 
-- [x] Basic actions including start, stop, upload and delete torrents
-- [x] Showing details of specific torrent
+- [x] Start, stop, upload and delete torrents
 - [x] Mobile friendly UI
+- [x] Pure html, css, js (easy to deploy and use)
 - [ ] More setting options provided by original web interface
+
+# Demo
+
+![demo1](demo/seedbox-demo-1.png)
+
+![demo2](demo/seedbox-demo-2.png)
 
 # Installation
 
-1. Download latest [release](https://github.com/noobly314/seedbox/releases/latest) and extract it to the directory where you will serve static files.
+1. Download latest [release](https://github.com/noobly314/seedbox/releases/latest) and extract it into the directory where you will serve static files.
 
-2. Edit the configuration file named `appConfig.json`. Replace your own RPC endpoint of transmission-daemon in this file. Please visit rpc address in browser to make sure it works properly. You should see 409 Conflict error.
-
-```
-// replace api
-{
-  "api": "http://seedbox/transmission/rpc"
-}
-```
-
-3. Serve seedbox static files with Nginx, Apache or whatever you like. Please note that the scheme, hostname and port of rpc must be same with those of your web service. Transmission does not support CORS for security reason, so you must follow this rule.
+2. Open setting and edit your RPC endpoint of transmission-daemon. Please visit rpc address in browser to make sure it works properly. You should see 409 Conflict error.
 
 ```
-// Nginx example configuration
+A typical transmission rpc address looks like:
+http://seedbox/transmission/rpc
+```
+
+3. Serve seedbox static files with Nginx, Apache or whatever you like. Please note that **transmission rpc and your web service must have same origin (scheme, hostname and port)**.
+
+<details>
+<summary>Nginx Configuration Example (click to open)</summary>
+
+```
 server {
         listen 80;
         server_name seedbox;
+        # This can be either public or private IP/domain
 
         index index.html;
         root /var/www/seedbox;
+        # This is where you put html, css, js files.
 
         location / {
                 try_files $uri $uri/ /index.html;
@@ -44,14 +52,19 @@ server {
                 proxy_set_header    X-Real-IP       $remote_addr;
                 proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
         }
+        # You need to setup reverse proxy for transmission rpc
+
 }
+
 ```
 
-# Demo
+</details>
 
-![demo1](demo/seedbox-demo-1.png)
+# Upgrade
 
-![demo2](demo/seedbox-demo-2.png)
+When a new release is available, feel free to replace files in your serving directory.
+
+RPC setting is stored in your browser, so it will not be lost after reinstall.
 
 # License
 
