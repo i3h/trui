@@ -50,19 +50,17 @@
         </button>
       </a>
 
-      <!-- TODO
       <a class="navbar-item">
         <button class="button is-info is-light" (click)="onClickSetting()">
           Setting
         </button>
       </a>
-			-->
     </div>
 
     <div *ngIf="!isMobile" class="navbar-end">
       <div
         class="navbar-item global-data unselectable"
-        style="width:40em"
+        style="width:30em"
         *ngIf="filesNum"
       >
         {{ filesNum }} files&nbsp;

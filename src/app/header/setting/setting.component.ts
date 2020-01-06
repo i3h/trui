@@ -20,7 +20,7 @@ const ESCAPE = 27;
 })
 export class SettingComponent implements OnInit {
   @Output() closeSetting = new EventEmitter<boolean>();
-  activeTab: string = "torrents";
+  activeTab: string = "rpc";
   settings = {};
 
   constructor(
@@ -29,6 +29,10 @@ export class SettingComponent implements OnInit {
     private globalService: GlobalService,
     private dataService: DataService
   ) {}
+
+  onClickRPC() {
+    this.activeTab = "rpc";
+  }
 
   onClickTorrents() {
     this.activeTab = "torrents";

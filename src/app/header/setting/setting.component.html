@@ -6,6 +6,13 @@
         <div class="tabs">
           <ul>
             <li
+              [ngClass]="activeTab == 'rpc' ? 'is-active' : ''"
+              (click)="onClickRPC()"
+            >
+              <a>RPC</a>
+            </li>
+            <!-- TODO
+            <li
               [ngClass]="activeTab == 'torrents' ? 'is-active' : ''"
               (click)="onClickTorrents()"
             >
@@ -29,8 +36,13 @@
             >
               <a>Network</a>
             </li>
+						-->
           </ul>
         </div>
+        <app-setting-rpc
+          *ngIf="activeTab == 'rpc'"
+          (closeSetting)="onClickClose($event)"
+        ></app-setting-rpc>
         <app-setting-torrents
           *ngIf="activeTab == 'torrents'"
         ></app-setting-torrents>

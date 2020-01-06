@@ -21,4 +21,13 @@ export class AppConfigService {
   getConfig() {
     return this.appConfig;
   }
+
+  getAPI() {
+    let api = window.localStorage.getItem("rpcAddr");
+    if (api == "" || api == null || api == undefined) {
+      api = this.getConfig().api;
+      return api;
+    }
+    return api;
+  }
 }

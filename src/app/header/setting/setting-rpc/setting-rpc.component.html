@@ -1,0 +1,32 @@
+<div class="field">
+  <label class="label">Transmission RPC Address</label>
+  <div class="spacing"></div>
+  <div class="control">
+    <input
+      class="input"
+      [ngClass]="rpcAddrErr ? 'is-danger' : ''"
+      type="text"
+      placeholder="http://www.example.com/transmission/rpc"
+      [(ngModel)]="rpcAddr"
+    />
+  </div>
+  <div class="spacing"></div>
+  This value will overwrite appConfig.json.<br />Leave blank to disable it.
+  <p class="help is-danger" *ngIf="rpcAddrErr">
+    This address is invalid
+  </p>
+</div>
+
+<div class="spacing"></div>
+<div class="spacing"></div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link" (click)="save()">Save</button>
+  </div>
+  <div class="control">
+    <button class="button is-link is-light" (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</div>
