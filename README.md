@@ -1,3 +1,7 @@
+![License](https://img.shields.io/github/license/noobly314/seedbox)
+![Build](https://img.shields.io/github/workflow/status/noobly314/seedbox/build)
+![Release](https://img.shields.io/github/v/release/noobly314/seedbox)
+
 # Introduction
 
 Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/transmission), with newer and nicer look.
