@@ -34,6 +34,8 @@ export class ListComponent implements OnInit {
   ) {}
 
   onClick(el) {
+    console.log(Date.now());
+    /*
     if (this.focusID == null && !this.isMobile) {
       this.clickCount++;
       if (this.clickCount > 1) {
@@ -46,6 +48,7 @@ export class ListComponent implements OnInit {
     } else {
       this.focus.emit(el.id);
     }
+		*/
   }
 
   onClickCheck(el: any) {
@@ -63,7 +66,6 @@ export class ListComponent implements OnInit {
       this.checkedAll = !this.checkedAll;
     }
     if (changes["focusID"] && typeof this.focusID !== "undefined") {
-      console.log(Date.now());
     }
   }
 }
