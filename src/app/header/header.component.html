@@ -20,11 +20,14 @@
     </a>
   </div>
 
-  <div
-    id="navbarBasicExample"
-    class="navbar-menu"
-    [ngClass]="openMenu ? 'is-active' : ''"
-  >
+  <div *ngIf="isMobile" class="navbar-brand">
+    <div class="navbar-item global-data unselectable" *ngIf="filesNum">
+      {{ filesNum }} files&nbsp;
+      <font color="{{ rateColor }}">{{ rateText }}</font>
+    </div>
+  </div>
+
+  <div class="navbar-menu" [ngClass]="openMenu ? 'is-active' : ''">
     <div class="navbar-start">
       <a class="navbar-item">
         <button class="button is-primary is-light" (click)="onClickStart()">
@@ -50,11 +53,13 @@
         </button>
       </a>
 
+      <!-- TODO
       <a class="navbar-item">
         <button class="button is-info is-light" (click)="onClickSetting()">
           Setting
         </button>
       </a>
+			-->
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">

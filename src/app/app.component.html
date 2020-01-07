@@ -3,9 +3,7 @@
   <app-header [torrents]="torrents"></app-header>
   <div class="row-container flex-container col-12 spacing">
     <div *ngIf="isRPCBad">
-      Please check your API configuration. (Open Setting)<br /><br />{{
-        rpcErrMsg
-      }}
+      Please check your RPC configuration.<br /><br />{{ rpcErrMsg }}
     </div>
   </div>
   <div class="tile is-ancestor">

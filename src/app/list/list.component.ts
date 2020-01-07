@@ -62,5 +62,8 @@ export class ListComponent implements OnInit {
     if (changes["checkedAll"] && typeof this.checkedAll !== "undefined") {
       this.checkedAll = !this.checkedAll;
     }
+    if (changes["focusID"] && typeof this.focusID !== "undefined") {
+      console.log(Date.now());
+    }
   }
 }

@@ -6,6 +6,7 @@ import { AppConfigService } from "./app-config.service";
 })
 export class GlobalService {
   VERSION = this.appConfigService.getConfig().version;
+
   checkedList: string[] = [];
 
   constructor(private appConfigService: AppConfigService) {}

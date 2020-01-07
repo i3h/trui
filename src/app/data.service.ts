@@ -21,7 +21,8 @@ import { AppConfigService } from "./app-config.service";
   providedIn: "root"
 })
 export class DataService {
-  API_ENDPOINT = this.appConfigService.getAPI();
+  //API_ENDPOINT = this.appConfigService.getAPI();
+  API_ENDPOINT = "/transmission/rpc";
 
   constructor(
     private http: HttpClient,

@@ -42,6 +42,10 @@ export class TorrentService {
     } else if (this.torrent.status == 6) {
       this.torrent.sbStatus = "Seeding";
     }
+
+    if (this.torrent.errorString != "") {
+      this.torrent.sbStatus = "Error";
+    }
   }
 
   addUnit(num) {
@@ -106,13 +110,15 @@ export class TorrentService {
       this.torrent.sbStatusColor = "green";
     } else if (this.torrent.sbStatus == "Seeding") {
       this.torrent.sbStatusColor = "#23A1D8";
+    } else if (this.torrent.sbStatus == "Error") {
+      this.torrent.sbStatusColor = "red";
     } else {
       this.torrent.sbStatusColor = "";
     }
   }
 
   setRateText() {
-    if (this.torrent.sbRateDownload != 0 || this.torrent.sbRateUpload != 0) {
+    if (this.torrent.rateDownload != 0 || this.torrent.rateUpload != 0) {
       this.torrent.sbRateColor = "green";
     }
     this.torrent.sbRateText =
