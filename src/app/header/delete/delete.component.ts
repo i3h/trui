@@ -63,7 +63,7 @@ export class DeleteComponent implements OnInit {
 
       this.closeDelete.emit(true);
     }
-    return;
+    location.reload();
   }
 
   ngOnInit() {

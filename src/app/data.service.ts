@@ -49,7 +49,7 @@ export class DataService {
     };
     let rpcData = JSON.stringify(data);
     let url = this.API_ENDPOINT;
-    return timer(0, 30000).pipe(
+    return timer(0, 3000).pipe(
       mergeMap(() => {
         return this.http.post(url, rpcData).pipe(
           map((res: Response) => {
@@ -144,7 +144,7 @@ export class DataService {
     let rpcData = JSON.stringify(data);
     let url = this.API_ENDPOINT;
     let count = 0;
-    return timer(0, 30000).pipe(
+    return timer(0, 3000).pipe(
       mergeMap(() => {
         return this.http.post(url, rpcData).pipe(
           map((res: Response) => {

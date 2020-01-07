@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit {
       // clear checked list
       this.globalService.checkedList = [];
     }
-    return;
+    location.reload();
   }
 
   onClickStop() {
@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
       // clear checked list
       this.globalService.checkedList = [];
     }
-    return;
+    location.reload();
   }
 
   onClickUpload() {

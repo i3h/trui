@@ -5,9 +5,10 @@
         <tr>
           <th>
             <mat-checkbox
-              [(ngModel)]="checkedAll"
+              value="{{ checkedAll }}"
               (click)="onCheckAll()"
             ></mat-checkbox>
+            {{ checkedAll }}
           </th>
           <th>ID</th>
           <th>Name</th>
@@ -24,7 +25,7 @@
         <tr
           *ngFor="let el of torrents"
           [ngClass]="el.id == focusID ? 'focused' : ''"
-          (click)="onClick(el)"
+          (mousedown)="onClick(el)"
         >
           <td>
             <mat-checkbox

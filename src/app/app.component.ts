@@ -56,6 +56,13 @@ export class AppComponent implements OnInit {
     }
   }
 
+  onUncheckAll() {
+    console.log("fired");
+    console.log(this.checkedAll);
+    this.checkedAll = !this.checkedAll;
+    console.log(this.checkedAll);
+  }
+
   onCheckAll() {
     this.checkedAll = !this.checkedAll;
     if (this.checkedAll) {
