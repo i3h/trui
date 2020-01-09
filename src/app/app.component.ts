@@ -19,11 +19,9 @@ import { TorrentService } from "./torrent.service";
 export class AppComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 1024;
   torrents: any;
-  torrent: any;
   globalStats: any;
   action: string;
   isRPCOK: boolean;
-  isRPCBad: boolean;
   rpcErrMsg: string;
   openInfo: boolean;
   openMenu: boolean;
@@ -53,11 +51,6 @@ export class AppComponent implements OnInit {
     this.openInfo = true;
     this.shortMode = true;
     this.focusID = id;
-    for (let i = 0; i < this.torrents.length; i++) {
-      if (this.torrents[i].id == id) {
-        this.torrent = this.torrents[i];
-      }
-    }
   }
 
   onCheck(el: any) {
@@ -104,7 +97,6 @@ export class AppComponent implements OnInit {
     this.dataService.rpc().subscribe(res => {
       if (res.ok == false && res.status != 409) {
         console.log(res);
-        this.isRPCBad = true;
         this.rpcErrMsg = res.message;
       } else {
         this.isRPCOK = true;
@@ -116,7 +108,9 @@ export class AppComponent implements OnInit {
                 this.torrents[i]
               );
             }
-            this.globalStats = this.torrentService.getGlobalStats(this.torrents);
+            this.globalStats = this.torrentService.getGlobalStats(
+              this.torrents
+            );
           }
         });
         this.dataService.getSession().subscribe(res => {

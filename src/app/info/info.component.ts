@@ -17,7 +17,9 @@ import { DataService } from "../data.service";
 })
 export class InfoComponent implements OnInit {
   @Output() closeInfo = new EventEmitter<boolean>();
-  @Input() torrent: any;
+  @Input() torrents: any;
+  @Input() focusID: any;
+  torrent: any;
   activeTab: string = "details";
 
   constructor(
@@ -47,5 +49,19 @@ export class InfoComponent implements OnInit {
     this.activeTab = "files";
   }
 
+  updateTorrent() {
+    for (let i = 0; i < this.torrents.length; i++) {
+      if (this.focusID == this.torrents[i].id) {
+        this.torrent = this.torrents[i];
+      }
+    }
+  }
+
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["focusID"] && typeof this.focusID !== "undefined") {
+      this.updateTorrent();
+    }
+  }
 }

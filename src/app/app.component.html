@@ -10,7 +10,7 @@
     (actionEnd)="onEndAction()"
   ></app-actions>
   <div class="row-container flex-container col-12 spacing">
-    <div *ngIf="isRPCBad">
+    <div *ngIf="!isRPCOK">
       Please check your RPC configuration.<br /><br />{{ rpcErrMsg }}
     </div>
   </div>
@@ -34,7 +34,8 @@
     <div *ngIf="openInfo" class="tile is-6 is-parent">
       <div class="tile is-child">
         <app-info
-          [torrent]="torrent"
+          [torrents]="torrents"
+          [focusID]="focusID"
           (closeInfo)="onCloseInfo($event)"
         ></app-info>
       </div>
@@ -50,7 +51,7 @@
     (click)="onOpenMenu()"
   ></app-header>
   <div class="row-container flex-container col-12 spacing">
-    <div *ngIf="isRPCBad">Please check your transmission-daemon service.</div>
+    <div *ngIf="!isRPCOK">Please check your transmission-daemon service.</div>
   </div>
   <div class="tile is-ancestor">
     <div class="tile is-vertical is-parent">
@@ -72,7 +73,8 @@
     <div *ngIf="openInfo" class="tile is-6 is-parent">
       <div class="tile is-child">
         <app-info
-          [torrent]="torrent"
+          [torrents]="torrents"
+          [focusID]="focusID"
           (closeInfo)="onCloseInfo($event)"
         ></app-info>
       </div>
