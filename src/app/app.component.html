@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div *ngIf="!isMobile" class="wrapper">
   <app-header
-    [torrents]="torrents"
+    [globalStats]="globalStats"
     (action)="onFireAction($event)"
   ></app-header>
   <app-actions
@@ -44,7 +44,8 @@
 
 <div *ngIf="isMobile" class="wrapper">
   <app-header
-    [torrents]="torrents"
+    [globalStats]="globalStats"
+    (action)="onFireAction($event)"
     [openMenu]="openMenu"
     (click)="onOpenMenu()"
   ></app-header>

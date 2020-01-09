@@ -21,9 +21,14 @@
   </div>
 
   <div *ngIf="isMobile" class="navbar-brand">
-    <div class="navbar-item global-data unselectable" *ngIf="filesNum">
-      {{ filesNum }} files&nbsp;
-      <font color="{{ rateColor }}">{{ rateText }}</font>
+    <div
+      class="navbar-item global-data unselectable"
+      *ngIf="globalStats && globalStats.fileNum"
+    >
+      {{ globalStats.fileNum }} files&nbsp;
+      <font color="{{ globalStats.rateColor }}">{{
+        globalStats.rateText
+      }}</font>
     </div>
   </div>
 
@@ -83,9 +88,14 @@
     </div>
 
     <div *ngIf="!isMobile" class="navbar-end">
-      <div class="navbar-item global-data unselectable" *ngIf="filesNum">
-        {{ filesNum }} files&nbsp;
-        <font color="{{ rateColor }}">{{ rateText }}</font>
+      <div
+        class="navbar-item global-data unselectable"
+        *ngIf="globalStats && globalStats.fileNum"
+      >
+        {{ globalStats.fileNum }} files&nbsp;
+        <font color="{{ globalStats.rateColor }}">{{
+          globalStats.rateText
+        }}</font>
       </div>
 
       <!--

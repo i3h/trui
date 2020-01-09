@@ -9,6 +9,42 @@ export class TorrentService {
 
   constructor(private globalService: GlobalService) {}
 
+  getGlobalStats(torrents: any) {
+    let stats = { fileNum: 0, rateColor: "", rateText: "" };
+    stats.fileNum = torrents.length;
+    stats.rateColor = this.setGlobalRateColor(torrents);
+    stats.rateText = this.setGlobalRateText(torrents);
+    return stats;
+  }
+
+  setGlobalRateColor(torrents: any) {
+    let d = 0;
+    let u = 0;
+    let rateColor = "";
+    for (let i = 0; i < torrents.length; i++) {
+      d += torrents[i].rateDownload;
+      u += torrents[i].rateUpload;
+    }
+    if (d != 0 || u != 0) {
+      rateColor = "green";
+    } else {
+      rateColor = "";
+    }
+    return rateColor;
+  }
+
+  setGlobalRateText(torrents: any) {
+    let d = 0;
+    let u = 0;
+    for (let i = 0; i < torrents.length; i++) {
+      d += torrents[i].rateDownload;
+      u += torrents[i].rateUpload;
+    }
+    let rateText = " | D " + this.addUnit(d) + "/s";
+    rateText += " | U " + this.addUnit(u) + "/s";
+    return rateText;
+  }
+
   addMoreAttr(torrent: any) {
     this.torrent = torrent;
 

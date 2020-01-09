@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 1024;
   torrents: any;
   torrent: any;
+  globalStats: any;
   action: string;
   isRPCOK: boolean;
   isRPCBad: boolean;
@@ -115,6 +116,7 @@ export class AppComponent implements OnInit {
                 this.torrents[i]
               );
             }
+            this.globalStats = this.torrentService.getGlobalStats(this.torrents);
           }
         });
         this.dataService.getSession().subscribe(res => {
