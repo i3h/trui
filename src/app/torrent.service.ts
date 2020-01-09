@@ -45,7 +45,7 @@ export class TorrentService {
 
   addMoreAttr(torrent: any) {
     let t = torrent;
-    t = this.setCheckedStatus(t);
+    t = this.setCheckStatus(t);
     t = this.setStatusCode(t);
     t = this.setSizeText(t);
     t = this.setUploadedEver(t);
@@ -112,12 +112,12 @@ export class TorrentService {
     return t;
   }
 
-  setCheckedStatus(torrent: any) {
+  setCheckStatus(torrent: any) {
     let t = torrent;
-    if (this.globalService.checkedList.includes(t.id)) {
-      t.sbChecked = true;
+    if (this.globalService.checkList.includes(t.id)) {
+      t.sbCheck = true;
     } else {
-      t.sbChecked = false;
+      t.sbCheck = false;
     }
     return t;
   }

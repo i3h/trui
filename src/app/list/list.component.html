@@ -5,20 +5,19 @@
         <tr>
           <th>
             <mat-checkbox
-              value="{{ checkedAll }}"
+              value="{{ isCheckAll }}"
               (click)="onCheckAll()"
             ></mat-checkbox>
-            {{ checkedAll }}
           </th>
           <th>ID</th>
           <th>Name</th>
           <th>Status</th>
           <th>Progress</th>
           <th></th>
-          <th *ngIf="!shortMode"></th>
-          <th *ngIf="!shortMode">Size</th>
-          <th *ngIf="!shortMode">Upload</th>
-          <th *ngIf="!shortMode">Ratio</th>
+          <th *ngIf="!shortList"></th>
+          <th *ngIf="!shortList">Size</th>
+          <th *ngIf="!shortList">Upload</th>
+          <th *ngIf="!shortList">Ratio</th>
         </tr>
       </thead>
       <tbody>
@@ -29,8 +28,8 @@
         >
           <td>
             <mat-checkbox
-              [(ngModel)]="el.sbChecked"
-              (click)="onClickCheck(el)"
+              [(ngModel)]="el.sbCheck"
+              (click)="onCheck(el)"
             ></mat-checkbox>
           </td>
           <td>{{ el.id }}</td>
@@ -47,13 +46,13 @@
               [ngClass]="el.sbProgressColor"
             ></progress>
           </td>
-          <td *ngIf="!shortMode">{{ el.sbProgressText }}</td>
-          <td *ngIf="!shortMode" style="width:20em">
+          <td *ngIf="!shortList">{{ el.sbProgressText }}</td>
+          <td *ngIf="!shortList" style="width:20em">
             <font color="{{ el.sbRateColor }}">{{ el.sbRateText }}</font>
           </td>
-          <td *ngIf="!shortMode">{{ el.sbSizeText }}</td>
-          <td *ngIf="!shortMode">{{ el.sbUploadedEver }}</td>
-          <td *ngIf="!shortMode">{{ el.sbUploadRatio }}</td>
+          <td *ngIf="!shortList">{{ el.sbSizeText }}</td>
+          <td *ngIf="!shortList">{{ el.sbUploadedEver }}</td>
+          <td *ngIf="!shortList">{{ el.sbUploadRatio }}</td>
         </tr>
       </tbody>
     </table>
@@ -67,7 +66,7 @@
         <tr>
           <th>
             <mat-checkbox
-              value="{{ checkedAll }}"
+              value="{{ isCheckAll }}"
               (click)="onCheckAll()"
             ></mat-checkbox>
           </th>
@@ -81,8 +80,8 @@
         >
           <td>
             <mat-checkbox
-              [(ngModel)]="el.sbChecked"
-              (click)="onClickCheck(el)"
+              [(ngModel)]="el.sbCheck"
+              (click)="onCheck(el)"
             ></mat-checkbox>
           </td>
           <td (click)="onClick(el)" style="width:20em">

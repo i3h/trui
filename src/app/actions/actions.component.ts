@@ -32,23 +32,23 @@ export class ActionsComponent implements OnInit {
   }
 
   start() {
-    if (this.globalService.checkedList.length > 0) {
+    if (this.globalService.checkList.length > 0) {
       let data = {
-        ids: this.globalService.checkedList
+        ids: this.globalService.checkList
       };
       this.dataService.startTorrents(data).subscribe(res => {});
-      this.globalService.checkedList = [];
+      this.globalService.checkList = [];
     }
     location.reload();
   }
 
   stop() {
-    if (this.globalService.checkedList.length > 0) {
+    if (this.globalService.checkList.length > 0) {
       let data = {
-        ids: this.globalService.checkedList
+        ids: this.globalService.checkList
       };
       this.dataService.stopTorrents(data).subscribe(res => {});
-      this.globalService.checkedList = [];
+      this.globalService.checkList = [];
     }
     location.reload();
   }

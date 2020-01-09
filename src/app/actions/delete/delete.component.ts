@@ -50,16 +50,16 @@ export class DeleteComponent implements OnInit {
   }
 
   delete() {
-    if (this.globalService.checkedList.length > 0) {
+    if (this.globalService.checkList.length > 0) {
       let data = {
-        ids: this.globalService.checkedList,
+        ids: this.globalService.checkList,
         delete_local_data: this.delete_local_data
       };
       this.dataService.deleteTorrents(data).subscribe(res => {
         //console.log(res);
       });
-      // clear checked list
-      this.globalService.checkedList = [];
+      // clear check list
+      this.globalService.checkList = [];
 
       this.close.emit(true);
     }
@@ -67,10 +67,10 @@ export class DeleteComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.globalService.checkedList.length > 0) {
+    if (this.globalService.checkList.length > 0) {
       this.deleteNotice =
         "You will delete " +
-        this.globalService.checkedList.length.toString() +
+        this.globalService.checkList.length.toString() +
         " files.";
     } else {
       this.deleteNotice = "No files chosen.";

@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
   rpcErrMsg: string;
   openInfo: boolean;
   openMenu: boolean;
-  shortMode: boolean;
+  shortList: boolean;
   focusID: string;
-  checkedAll: boolean;
+  isCheckAll: boolean;
 
   constructor(
     private router: Router,
@@ -49,43 +49,40 @@ export class AppComponent implements OnInit {
 
   onFocus(id: any) {
     this.openInfo = true;
-    this.shortMode = true;
+    this.shortList = true;
     this.focusID = id;
   }
 
   onCheck(el: any) {
-    if (el.sbChecked) {
-      this.globalService.deleteFromCheckedList(el.id);
+    if (el.sbCheck) {
+      this.globalService.deleteFromCheckList(el.id);
     } else {
-      this.globalService.addToCheckedList(el.id);
+      this.globalService.addToCheckList(el.id);
     }
   }
 
   onUncheckAll() {
-    console.log("fired");
-    console.log(this.checkedAll);
-    this.checkedAll = !this.checkedAll;
-    console.log(this.checkedAll);
+    this.isCheckAll = !this.isCheckAll;
   }
 
   onCheckAll() {
-    this.checkedAll = !this.checkedAll;
-    if (this.checkedAll) {
+    this.isCheckAll = !this.isCheckAll;
+    if (this.isCheckAll) {
       for (let i = 0; i < this.torrents.length; i++) {
-        this.torrents[i].sbChecked = true;
-        this.globalService.addToCheckedList(this.torrents[i].id);
+        this.torrents[i].sbCheck = true;
+        this.globalService.addToCheckList(this.torrents[i].id);
       }
     } else {
       for (let i = 0; i < this.torrents.length; i++) {
-        this.torrents[i].sbChecked = false;
-        this.globalService.deleteFromCheckedList(this.torrents[i].id);
+        this.torrents[i].sbCheck = false;
+        this.globalService.deleteFromCheckList(this.torrents[i].id);
       }
     }
   }
 
   onCloseInfo() {
     this.openInfo = false;
-    this.shortMode = false;
+    this.shortList = false;
     this.focusID = null;
   }
 

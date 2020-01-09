@@ -21,9 +21,9 @@ export class ListComponent implements OnInit {
   @Output() check = new EventEmitter<any>();
   @Output() checkAll = new EventEmitter<any>();
   @Input() torrents: any;
-  @Input() shortMode: any;
+  @Input() shortList: any;
   @Input() focusID: string;
-  @Input() checkedAll: boolean;
+  @Input() isCheckAll: boolean;
   clickCount: number;
 
   constructor(
@@ -48,7 +48,7 @@ export class ListComponent implements OnInit {
     }
   }
 
-  onClickCheck(el: any) {
+  onCheck(el: any) {
     this.check.emit(el);
   }
 
@@ -59,7 +59,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes["checkedAll"] && typeof this.checkedAll !== "undefined") {
+    if (changes["isCheckAll"] && typeof this.isCheckAll !== "undefined") {
     }
     if (changes["focusID"] && typeof this.focusID !== "undefined") {
     }

@@ -7,17 +7,17 @@ import { AppConfigService } from "./app-config.service";
 export class GlobalService {
   VERSION = this.appConfigService.getConfig().version;
 
-  checkedList: string[] = [];
+  checkList: string[] = [];
 
   constructor(private appConfigService: AppConfigService) {}
 
-  addToCheckedList(id: string) {
-    let index = this.checkedList.indexOf(id);
-    if (index == -1) this.checkedList.push(id);
+  addToCheckList(id: string) {
+    let index = this.checkList.indexOf(id);
+    if (index == -1) this.checkList.push(id);
   }
 
-  deleteFromCheckedList(id: string) {
-    let index = this.checkedList.indexOf(id);
-    if (index !== -1) this.checkedList.splice(index, 1);
+  deleteFromCheckList(id: string) {
+    let index = this.checkList.indexOf(id);
+    if (index !== -1) this.checkList.splice(index, 1);
   }
 }
