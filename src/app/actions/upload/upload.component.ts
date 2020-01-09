@@ -19,7 +19,7 @@ const ESCAPE = 27;
   styleUrls: ["./upload.component.css"]
 })
 export class UploadComponent implements OnInit {
-  @Output() closeUpload = new EventEmitter<boolean>();
+  @Output() close = new EventEmitter<boolean>();
   filesToUpload: Array<File>;
   metainfo: Array<string>;
   download_dir: string;
@@ -38,16 +38,16 @@ export class UploadComponent implements OnInit {
   @HostListener("document:keydown", ["$event"])
   private handleKeydown(event: KeyboardEvent) {
     if (event.keyCode === ESCAPE) {
-      this.closeUpload.emit(true);
+      this.close.emit(true);
     }
   }
 
   onClickBackground() {
-    this.closeUpload.emit(true);
+    this.close.emit(true);
   }
 
-  onClickClose() {
-    this.closeUpload.emit(true);
+  onClose() {
+    this.close.emit(true);
   }
 
   handleFilesInput(event) {
@@ -70,7 +70,7 @@ export class UploadComponent implements OnInit {
   }
 
   cancel() {
-    this.closeUpload.emit(true);
+    this.close.emit(true);
   }
 
   upload() {
@@ -94,7 +94,7 @@ export class UploadComponent implements OnInit {
       });
     }
     window.localStorage.setItem("lastDownloadDir", this.download_dir);
-    this.closeUpload.emit(true);
+    this.close.emit(true);
   }
 
   ngOnInit() {

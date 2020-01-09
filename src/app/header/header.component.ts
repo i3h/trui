@@ -17,12 +17,9 @@ import { DataService } from "../data.service";
 })
 export class HeaderComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 1024;
+  @Output() action = new EventEmitter<any>();
   @Input() torrents: any;
   @Input() openMenu: boolean;
-  openUpload: boolean;
-  openDelete: boolean;
-  openSetting: boolean;
-  openAbout: boolean;
   filesNum: number;
   rateText: string;
   rateColor: string;
@@ -91,35 +88,19 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickUpload() {
-    this.openUpload = true;
-  }
-
-  onCloseUpload() {
-    this.openUpload = false;
+    this.action.emit("upload");
   }
 
   onClickDelete() {
-    this.openDelete = true;
-  }
-
-  onCloseDelete() {
-    this.openDelete = false;
+    this.action.emit("delete");
   }
 
   onClickSetting() {
-    this.openSetting = true;
-  }
-
-  onCloseSetting() {
-    this.openSetting = false;
+    this.action.emit("setting");
   }
 
   onClickAbout() {
-    this.openAbout = true;
-  }
-
-  onCloseAbout() {
-    this.openAbout = false;
+    this.action.emit("about");
   }
 
   ngOnInit() {}

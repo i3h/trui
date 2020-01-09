@@ -1,0 +1,7 @@
+<app-upload *ngIf="action == 'upload'" (close)="onClose($event)"></app-upload>
+<app-delete *ngIf="action == 'delete'" (close)="onClose($event)"></app-delete>
+<app-setting
+  *ngIf="action == 'setting'"
+  (close)="onClose($event)"
+></app-setting>
+<app-about *ngIf="action == 'about'" (close)="onClose($event)"></app-about>

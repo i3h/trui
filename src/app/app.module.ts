@@ -14,20 +14,21 @@ import { HeaderComponent } from "./header/header.component";
 import { ListComponent } from "./list/list.component";
 
 import { CsrfInterceptorService } from "./csrf-interceptor.service";
-import { UploadComponent } from "./header/upload/upload.component";
-import { DeleteComponent } from "./header/delete/delete.component";
-import { SettingComponent } from "./header/setting/setting.component";
-import { SettingTorrentsComponent } from "./header/setting/setting-torrents/setting-torrents.component";
-import { SettingSpeedComponent } from "./header/setting/setting-speed/setting-speed.component";
-import { SettingPeersComponent } from "./header/setting/setting-peers/setting-peers.component";
-import { SettingNetworkComponent } from "./header/setting/setting-network/setting-network.component";
+import { UploadComponent } from "./actions/upload/upload.component";
+import { DeleteComponent } from "./actions/delete/delete.component";
+import { SettingComponent } from "./actions/setting/setting.component";
+import { SettingTorrentsComponent } from "./actions/setting/setting-torrents/setting-torrents.component";
+import { SettingSpeedComponent } from "./actions/setting/setting-speed/setting-speed.component";
+import { SettingPeersComponent } from "./actions/setting/setting-peers/setting-peers.component";
+import { SettingNetworkComponent } from "./actions/setting/setting-network/setting-network.component";
 import { InfoComponent } from "./info/info.component";
 import { DetailsComponent } from "./info/details/details.component";
 import { PeersComponent } from "./info/peers/peers.component";
 import { TrackersComponent } from "./info/trackers/trackers.component";
 import { FilesComponent } from "./info/files/files.component";
-import { SettingRPCComponent } from './header/setting/setting-rpc/setting-rpc.component';
-import { AboutComponent } from './header/about/about.component';
+import { SettingRPCComponent } from "./actions/setting/setting-rpc/setting-rpc.component";
+import { AboutComponent } from "./actions/about/about.component";
+import { ActionsComponent } from "./actions/actions.component";
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -53,7 +54,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     TrackersComponent,
     FilesComponent,
     SettingRPCComponent,
-    AboutComponent
+    AboutComponent,
+    ActionsComponent
   ],
   imports: [
     BrowserModule,

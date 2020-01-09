@@ -19,7 +19,7 @@ const ESCAPE = 27;
   styleUrls: ["./setting.component.css"]
 })
 export class SettingComponent implements OnInit {
-  @Output() closeSetting = new EventEmitter<boolean>();
+  @Output() close = new EventEmitter<boolean>();
   activeTab: string = "rpc";
   settings = {};
 
@@ -53,25 +53,25 @@ export class SettingComponent implements OnInit {
   @HostListener("document:keydown", ["$event"])
   private handleKeydown(event: KeyboardEvent) {
     if (event.keyCode === ESCAPE) {
-      this.closeSetting.emit(true);
+      this.close.emit(true);
     }
   }
 
   onClickBackground() {
-    this.closeSetting.emit(true);
+    this.close.emit(true);
   }
 
   onClickClose() {
-    this.closeSetting.emit(true);
+    this.close.emit(true);
   }
 
   cancel() {
-    this.closeSetting.emit(true);
+    this.close.emit(true);
   }
 
   save() {
     console.log("fired");
-    this.closeSetting.emit(true);
+    this.close.emit(true);
   }
 
   ngOnInit() {}

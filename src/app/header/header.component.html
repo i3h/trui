@@ -117,16 +117,3 @@
     </div>
   </div>
 </nav>
-<app-upload
-  *ngIf="openUpload"
-  (closeUpload)="onCloseUpload($event)"
-></app-upload>
-<app-delete
-  *ngIf="openDelete"
-  (closeDelete)="onCloseDelete($event)"
-></app-delete>
-<app-setting
-  *ngIf="openSetting"
-  (closeSetting)="onCloseSetting($event)"
-></app-setting>
-<app-about *ngIf="openAbout" (closeAbout)="onCloseAbout($event)"></app-about>

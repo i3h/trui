@@ -19,7 +19,7 @@ const ESCAPE = 27;
   styleUrls: ["./delete.component.css"]
 })
 export class DeleteComponent implements OnInit {
-  @Output() closeDelete = new EventEmitter<boolean>();
+  @Output() close = new EventEmitter<boolean>();
   deleteNotice: string;
   delete_local_data: boolean;
 
@@ -33,20 +33,20 @@ export class DeleteComponent implements OnInit {
   @HostListener("document:keydown", ["$event"])
   private handleKeydown(event: KeyboardEvent) {
     if (event.keyCode === ESCAPE) {
-      this.closeDelete.emit(true);
+      this.close.emit(true);
     }
   }
 
   onClickBackground() {
-    this.closeDelete.emit(true);
+    this.close.emit(true);
   }
 
   onClickClose() {
-    this.closeDelete.emit(true);
+    this.close.emit(true);
   }
 
   cancel() {
-    this.closeDelete.emit(true);
+    this.close.emit(true);
   }
 
   delete() {
@@ -61,7 +61,7 @@ export class DeleteComponent implements OnInit {
       // clear checked list
       this.globalService.checkedList = [];
 
-      this.closeDelete.emit(true);
+      this.close.emit(true);
     }
     location.reload();
   }

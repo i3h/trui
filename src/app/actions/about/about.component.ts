@@ -19,7 +19,7 @@ const ESCAPE = 27;
   styleUrls: ["./about.component.css"]
 })
 export class AboutComponent implements OnInit {
-  @Output() closeAbout = new EventEmitter<boolean>();
+  @Output() close = new EventEmitter<boolean>();
   version: string;
 
   constructor(
@@ -32,16 +32,16 @@ export class AboutComponent implements OnInit {
   @HostListener("document:keydown", ["$event"])
   private handleKeydown(event: KeyboardEvent) {
     if (event.keyCode === ESCAPE) {
-      this.closeAbout.emit(true);
+      this.close.emit(true);
     }
   }
 
   onClickBackground() {
-    this.closeAbout.emit(true);
+    this.close.emit(true);
   }
 
   onClickClose() {
-    this.closeAbout.emit(true);
+    this.close.emit(true);
   }
 
   ngOnInit() {

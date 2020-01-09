@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 1024;
   torrents: any;
   torrent: any;
+  action: string;
   isRPCOK: boolean;
   isRPCBad: boolean;
   rpcErrMsg: string;
@@ -36,6 +37,16 @@ export class AppComponent implements OnInit {
     private dataService: DataService,
     private torrentService: TorrentService
   ) {}
+
+  onFireAction(e) {
+    console.log(e);
+    this.action = e;
+  }
+
+  onEndAction(e) {
+    console.log(e);
+    this.action = null;
+  }
 
   onFocus(id: any) {
     this.openInfo = true;

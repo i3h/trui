@@ -2,7 +2,13 @@
 <div *ngIf="!isMobile" class="wrapper">
   <app-header
     [torrents]="torrents"
+    (action)="onFireAction($event)"
   ></app-header>
+  <app-actions
+    [torrents]="torrents"
+    [action]="action"
+    (actionEnd)="onEndAction()"
+  ></app-actions>
   <div class="row-container flex-container col-12 spacing">
     <div *ngIf="isRPCBad">
       Please check your RPC configuration.<br /><br />{{ rpcErrMsg }}
