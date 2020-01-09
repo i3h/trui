@@ -5,8 +5,6 @@ import { GlobalService } from "./global.service";
   providedIn: "root"
 })
 export class TorrentService {
-  torrent: any;
-
   constructor(private globalService: GlobalService) {}
 
   getGlobalStats(torrents: any) {
@@ -46,42 +44,42 @@ export class TorrentService {
   }
 
   addMoreAttr(torrent: any) {
-    this.torrent = torrent;
-
-    this.setCheckedStatus();
-    this.setStatusCode();
-    this.setSizeText();
-    this.setUploadedEver();
-    this.setUploadRatio();
-    this.setProgressValue();
-    this.setProgressText();
-    this.setProgressColor();
-    this.setStatusColor();
-    this.setRateText();
-
-    return this.torrent;
+    let t = torrent;
+    t = this.setCheckedStatus(t);
+    t = this.setStatusCode(t);
+    t = this.setSizeText(t);
+    t = this.setUploadedEver(t);
+    t = this.setUploadRatio(t);
+    t = this.setProgressValue(t);
+    t = this.setProgressText(t);
+    t = this.setProgressColor(t);
+    t = this.setStatusColor(t);
+    t = this.setRateText(t);
+    return t;
   }
 
-  setStatusCode() {
-    if (this.torrent.status == 0) {
-      this.torrent.sbStatus = "Stopped";
-    } else if (this.torrent.status == 1) {
-      this.torrent.sbStatus = "Queued to check";
-    } else if (this.torrent.status == 2) {
-      this.torrent.sbStatus = "Checking";
-    } else if (this.torrent.status == 3) {
-      this.torrent.sbStatus = "Queued to download";
-    } else if (this.torrent.status == 4) {
-      this.torrent.sbStatus = "Downloading";
-    } else if (this.torrent.status == 5) {
-      this.torrent.sbStatus = "Queued to seed";
-    } else if (this.torrent.status == 6) {
-      this.torrent.sbStatus = "Seeding";
+  setStatusCode(torrent: any) {
+    let t = torrent;
+    if (t.status == 0) {
+      t.sbStatus = "Stopped";
+    } else if (t.status == 1) {
+      t.sbStatus = "Queued to check";
+    } else if (t.status == 2) {
+      t.sbStatus = "Checking";
+    } else if (t.status == 3) {
+      t.sbStatus = "Queued to download";
+    } else if (t.status == 4) {
+      t.sbStatus = "Downloading";
+    } else if (t.status == 5) {
+      t.sbStatus = "Queued to seed";
+    } else if (t.status == 6) {
+      t.sbStatus = "Seeding";
     }
 
-    if (this.torrent.errorString != "") {
-      this.torrent.sbStatus = "Error";
+    if (t.errorString != "") {
+      t.sbStatus = "Error";
     }
+    return t;
   }
 
   addUnit(num) {
@@ -96,70 +94,84 @@ export class TorrentService {
     }
   }
 
-  setSizeText() {
-    this.torrent.sbSizeText = this.addUnit(this.torrent.totalSize);
+  setSizeText(torrent: any) {
+    let t = torrent;
+    t.sbSizeText = this.addUnit(t.totalSize);
+    return t;
   }
 
-  setUploadedEver() {
-    this.torrent.sbUploadedEver = this.addUnit(this.torrent.uploadedEver);
+  setUploadedEver(torrent: any) {
+    let t = torrent;
+    t.sbUploadedEver = this.addUnit(t.uploadedEver);
+    return t;
   }
 
-  setUploadRatio() {
-    this.torrent.sbUploadRatio = this.torrent.uploadRatio.toFixed(2).toString();
+  setUploadRatio(torrent: any) {
+    let t = torrent;
+    t.sbUploadRatio = t.uploadRatio.toFixed(2).toString();
+    return t;
   }
 
-  setCheckedStatus() {
-    if (this.globalService.checkedList.includes(this.torrent.id)) {
-      this.torrent.sbChecked = true;
+  setCheckedStatus(torrent: any) {
+    let t = torrent;
+    if (this.globalService.checkedList.includes(t.id)) {
+      t.sbChecked = true;
     } else {
-      this.torrent.sbChecked = false;
+      t.sbChecked = false;
     }
+    return t;
   }
 
-  setProgressValue() {
-    let value = Math.ceil(
-      (this.torrent.downloadedEver / this.torrent.totalSize) * 100
-    );
+  setProgressValue(torrent: any) {
+    let t = torrent;
+    let value = Math.ceil((t.downloadedEver / t.totalSize) * 100);
     if (value < 100) {
-      this.torrent.sbProgressValue = value;
+      t.sbProgressValue = value;
     } else {
-      this.torrent.sbProgressValue = 100;
+      t.sbProgressValue = 100;
     }
+    return t;
   }
 
-  setProgressText() {
-    this.torrent.sbProgressText = this.torrent.sbProgressValue + "%";
+  setProgressText(torrent: any) {
+    let t = torrent;
+    t.sbProgressText = t.sbProgressValue + "%";
+    return t;
   }
 
-  setProgressColor() {
-    if (this.torrent.sbStatus == "Downloading") {
-      this.torrent.sbProgressColor = "is-success";
-    } else if (this.torrent.sbStatus == "Seeding") {
-      this.torrent.sbProgressColor = "is-info";
+  setProgressColor(torrent: any) {
+    let t = torrent;
+    if (t.sbStatus == "Downloading") {
+      t.sbProgressColor = "is-success";
+    } else if (t.sbStatus == "Seeding") {
+      t.sbProgressColor = "is-info";
     } else {
-      this.torrent.sbProgressColor = "";
+      t.sbProgressColor = "";
     }
+    return t;
   }
 
-  setStatusColor() {
-    if (this.torrent.sbStatus == "Downloading") {
-      this.torrent.sbStatusColor = "green";
-    } else if (this.torrent.sbStatus == "Seeding") {
-      this.torrent.sbStatusColor = "#23A1D8";
-    } else if (this.torrent.sbStatus == "Error") {
-      this.torrent.sbStatusColor = "red";
+  setStatusColor(torrent: any) {
+    let t = torrent;
+    if (t.sbStatus == "Downloading") {
+      t.sbStatusColor = "green";
+    } else if (t.sbStatus == "Seeding") {
+      t.sbStatusColor = "#23A1D8";
+    } else if (t.sbStatus == "Error") {
+      t.sbStatusColor = "red";
     } else {
-      this.torrent.sbStatusColor = "";
+      t.sbStatusColor = "";
     }
+    return t;
   }
 
-  setRateText() {
-    if (this.torrent.rateDownload != 0 || this.torrent.rateUpload != 0) {
-      this.torrent.sbRateColor = "green";
+  setRateText(torrent: any) {
+    let t = torrent;
+    if (t.rateDownload != 0 || t.rateUpload != 0) {
+      t.sbRateColor = "green";
     }
-    this.torrent.sbRateText =
-      "D " + this.addUnit(this.torrent.rateDownload) + "/s";
-    this.torrent.sbRateText +=
-      " | U " + this.addUnit(this.torrent.rateUpload) + "/s";
+    t.sbRateText = "D " + this.addUnit(t.rateDownload) + "/s";
+    t.sbRateText += " | U " + this.addUnit(t.rateUpload) + "/s";
+    return t;
   }
 }
