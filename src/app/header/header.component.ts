@@ -58,33 +58,11 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickStart() {
-    //console.log("start");
-    if (this.globalService.checkedList.length > 0) {
-      let data = {
-        ids: this.globalService.checkedList
-      };
-      this.dataService.startTorrents(data).subscribe(res => {
-        //console.log(res);
-      });
-      // clear checked list
-      this.globalService.checkedList = [];
-    }
-    location.reload();
+    this.action.emit("start");
   }
 
   onClickStop() {
-    //console.log("stop");
-    if (this.globalService.checkedList.length > 0) {
-      let data = {
-        ids: this.globalService.checkedList
-      };
-      this.dataService.stopTorrents(data).subscribe(res => {
-        //console.log(res);
-      });
-      // clear checked list
-      this.globalService.checkedList = [];
-    }
-    location.reload();
+    this.action.emit("stop");
   }
 
   onClickUpload() {
