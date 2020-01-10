@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
   @Input() shortList: any;
   @Input() focusID: string;
   @Input() isCheckAll: boolean;
-  clickCount: number;
+  clickCount: number = 0;
 
   constructor(
     private router: Router,
