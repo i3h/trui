@@ -1,3 +1,6 @@
 *:80 {
     root /srv/trui
+    proxy /transmission/rpc localhost:9091 {
+        transparent
+    }
 }
