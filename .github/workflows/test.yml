@@ -1,0 +1,22 @@
+name: build
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  publish_release:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout code
+      - uses: actions/checkout@master
+        run: |
+          cd docker
+          ls
+      # publish to docker hub
+      - uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: mark314/trui
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
