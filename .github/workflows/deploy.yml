@@ -19,7 +19,7 @@ jobs:
         run: npm install
       - name: build
         run: |
-          ng build --prod --output-path=dist/seedbox
+          ng build --prod --output-path=dist/trui
       # deploy
       - name: deploy
         uses: noobly314/actions/rsync@master
@@ -27,5 +27,5 @@ jobs:
           SERVER: ${{ secrets.SERVER_IP }}
           USERNAME: root
           KEY: ${{ secrets.PRIVATE_KEY }}
-          SRC: ./dist/seedbox/
-          DEST: /var/www/seedbox
+          SRC: ./dist/trui/
+          DEST: /var/www/trui

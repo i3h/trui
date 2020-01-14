@@ -33,14 +33,14 @@ jobs:
         run: npm install
       - name: build
         run: |
-          ng build --prod --output-path=dist/seedbox
-          tar -C $PWD/dist -cvzf seedbox.tar.gz seedbox
+          ng build --prod --output-path=dist/trui
+          tar -C $PWD/dist -cvzf trui.tar.gz trui
       # upload
       - uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./seedbox.tar.gz
-          asset_name: seedbox.tar.gz
+          asset_path: ./trui.tar.gz
+          asset_name: trui.tar.gz
           asset_content_type: application/gzip
