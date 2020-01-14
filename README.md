@@ -1,10 +1,10 @@
-![License](https://img.shields.io/github/license/noobly314/seedbox)
-![Build](https://img.shields.io/github/workflow/status/noobly314/seedbox/build)
-![Release](https://img.shields.io/github/v/release/noobly314/seedbox)
+![License](https://img.shields.io/github/license/noobly314/trui)
+![Build](https://img.shields.io/github/workflow/status/noobly314/trui/build)
+![Release](https://img.shields.io/github/v/release/noobly314/trui)
 
 # Introduction
 
-Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/transmission), with newer and nicer look.
+TRUI is a Web UI designed for [Transmission](https://github.com/transmission/transmission), with newer and nicer look.
 
 # Features
 
@@ -21,9 +21,25 @@ Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/
 
 # Installation
 
-1. Download latest [release](https://github.com/noobly314/seedbox/releases/latest) and extract it into the directory where you will serve static files.
+1. We provide a [Dockerfile](https://github.com/noobly314/trui/blob/master/docker/Dockerfile), for running configured Nginx service. Please make sure port 80 is not occupied before running container.
 
-2. Serve seedbox static files with Nginx, Apache or whatever you like. Setup reverse proxy for transmission-daemon rpc service.
+Build:
+
+```
+docker build . -t "trui:latest"
+```
+
+Run:
+
+```
+docker run  -d \
+	--network="host" \
+	--restart always \
+	--name trui \
+	trui:latest
+```
+
+2. You can also download latest [release](https://github.com/noobly314/trui/releases/latest) and extract it into the directory where you will serve static files. Serve trui static files with Nginx, Apache or whatever you like. Setup reverse proxy for transmission-daemon rpc service.
 
 <details>
 <summary>Nginx Configuration Example (click to open)</summary>
@@ -31,11 +47,11 @@ Seedbox is a Web UI designed for [Transmission](https://github.com/transmission/
 ```
 server {
         listen 80;
-        server_name seedbox;
+        server_name trui;
         # This can be either public or private IP/domain
 
         index index.html;
-        root /var/www/seedbox;
+        root /var/www/trui;
         # This is where you put html, css, js files.
 
         location / {
@@ -59,4 +75,4 @@ server {
 
 # License
 
-See the [LICENSE](https://github.com/noobly314/seedbox/blob/master/LICENSE.md) file for license rights and limitations (MIT).
+See the [LICENSE](https://github.com/noobly314/trui/blob/master/LICENSE.md) file for license rights and limitations (MIT).
