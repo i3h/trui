@@ -7,6 +7,29 @@ RUN curl -s https://api.github.com/repos/noobly314/trui/releases/latest \
     | wget -qi - \
     && tar xzf trui.tar.gz \
     && mv trui /var/www \
-    && pwd; ls /var/www/trui
+    && sed -i '/sites-enabled/d' /etc/nginx/nginx.conf \
+    && echo 'server {\n\
+            listen 80;\n\
+            index index.html;\n\
+            root /var/www/trui;\n\
+            location / {\n\
+            try_files $uri $uri/ /index.html;\n\
+            }\n\
+            location /transmission/rpc {\n\
+                     proxy_pass         http://localhost:9091;\n\
+                     proxy_redirect      off;\n\
+                     proxy_set_header    Host            $host;\n\
+                     proxy_set_header    X-Real-IP       $remote_addr;\n\
+                     proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;\n\
+            }\n\
+            location /transmission/web {\n\
+                     proxy_pass         http://localhost:9091;\n\
+                     proxy_redirect      off;\n\
+                     proxy_set_header    Host            $host;\n\
+                     proxy_set_header    X-Real-IP       $remote_addr;\n\
+                     proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;\n\
+            }\n\
+    }\n'\
+    >> /etc/nginx/conf.d/trui.conf
 EXPOSE 80
-ENTRYPOINT ["sh"]
+CMD nginx -g "daemon off;"
