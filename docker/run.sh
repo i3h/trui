@@ -5,4 +5,4 @@ docker run  -d \
 	--network="host" \
 	--restart always \
 	--name trui \
-	trui:latest
+	mark314/trui:latest
