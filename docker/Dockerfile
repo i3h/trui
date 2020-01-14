@@ -1,35 +1,44 @@
-FROM ubuntu:18.04
-RUN apt-get update \
-    && apt-get install -y curl wget nginx
+#
+# Build stage
+#
+FROM golang:1.13-alpine as build
+
+# args
+ARG version="1.0.4"
+
+# build root
+WORKDIR /build
+ADD ./main.go ./
+
+# build & test
+RUN apk add --no-cache git curl wget ca-certificates \
+    && echo -e "module caddy\nrequire github.com/caddyserver/caddy v${version}" > go.mod \
+    && CGO_ENABLED=0 GOOS=linux GO111MODULE=on go build \
+    && ./caddy -version
 RUN curl -s https://api.github.com/repos/noobly314/trui/releases/latest \
     | grep -o "browser_download_url.*gz" \
     | grep -o "https.*gz" \
     | wget -qi - \
-    && tar xzf trui.tar.gz \
-    && mv trui /var/www \
-    && sed -i '/sites-enabled/d' /etc/nginx/nginx.conf \
-    && echo 'server {\n\
-            listen 80;\n\
-            index index.html;\n\
-            root /var/www/trui;\n\
-            location / {\n\
-            try_files $uri $uri/ /index.html;\n\
-            }\n\
-            location /transmission/rpc {\n\
-                     proxy_pass         http://localhost:9091;\n\
-                     proxy_redirect      off;\n\
-                     proxy_set_header    Host            $host;\n\
-                     proxy_set_header    X-Real-IP       $remote_addr;\n\
-                     proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;\n\
-            }\n\
-            location /transmission/web {\n\
-                     proxy_pass         http://localhost:9091;\n\
-                     proxy_redirect      off;\n\
-                     proxy_set_header    Host            $host;\n\
-                     proxy_set_header    X-Real-IP       $remote_addr;\n\
-                     proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;\n\
-            }\n\
-    }\n'\
-    >> /etc/nginx/conf.d/trui.conf
+    && tar xzf trui.tar.gz
+
+#
+# Final image
+#
+FROM scratch
+
+# copy binary
+COPY --from=build /build/caddy /bin/caddy
+COPY --from=build /build/trui /srv/trui
+
+# copy default caddyfile
+COPY Caddyfile /etc/Caddyfile
+
+# set default caddypath
+ENV CADDYPATH=/etc/.caddy
+VOLUME /etc/.caddy
+
+# serve from /srv
+WORKDIR /srv
 EXPOSE 80
-CMD nginx -g "daemon off;"
+
+ENTRYPOINT ["/bin/caddy", "--conf", "/etc/Caddyfile", "--log", "stdout"]
