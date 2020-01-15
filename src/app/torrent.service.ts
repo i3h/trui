@@ -5,7 +5,7 @@ import { GlobalService } from "./global.service";
   providedIn: "root"
 })
 export class TorrentService {
-  filterNameOfCommon = ["All", "Downloading", "Seeding", "Stopped"];
+  filterNameOfCommon = ["All", "Downloading", "Seeding", "Stopped", "Error"];
 
   constructor(private globalService: GlobalService) {}
 
