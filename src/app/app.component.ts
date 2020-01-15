@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   onFireAction(e) {
-    console.log(e);
+    //console.log(e);
     this.action = e;
   }
 
@@ -102,6 +102,7 @@ export class AppComponent implements OnInit {
     // set filter name
     this.filterName = window.localStorage.getItem("filterName");
     this.filterName = null ? "All" : this.filterName;
+    console.log("filter name: ", this.filterName);
     // fetch torrents data
     this.dataService.rpc().subscribe(res => {
       if (res.ok == false && res.status != 409) {

@@ -1,5 +1,16 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
+    <div *ngIf="isMobile" class="navbar-brand">
+      <div
+        class="navbar-item unselectable"
+        *ngIf="globalStats && globalStats.fileNum"
+      >
+        {{ globalStats.fileNum }} files&nbsp;
+        <font color="{{ globalStats.rateColor }}">{{
+          globalStats.rateText
+        }}</font>
+      </div>
+    </div>
     <a
       role="button"
       class="navbar-burger burger"
@@ -12,18 +23,6 @@
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
-  </div>
-
-  <div *ngIf="isMobile" class="navbar-brand">
-    <div
-      class="navbar-item global-data unselectable"
-      *ngIf="globalStats && globalStats.fileNum"
-    >
-      {{ globalStats.fileNum }} files&nbsp;
-      <font color="{{ globalStats.rateColor }}">{{
-        globalStats.rateText
-      }}</font>
-    </div>
   </div>
 
   <div class="navbar-menu" [ngClass]="openMenu ? 'is-active' : ''">

@@ -52,6 +52,11 @@
     [openMenu]="openMenu"
     (click)="onOpenMenu()"
   ></app-header>
+  <app-actions
+    [torrents]="torrents"
+    [action]="action"
+    (actionEnd)="onEndAction()"
+  ></app-actions>
   <div class="row-container flex-container col-12 spacing">
     <div *ngIf="!isRPCOK">Please check your transmission-daemon service.</div>
   </div>
