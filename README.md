@@ -11,6 +11,7 @@ TRUI is a Web UI designed for [Transmission](https://github.com/transmission/tra
 - [x] Start, stop, upload and delete torrents
 - [x] Mobile friendly UI
 - [x] Pure html, css, js (easy to deploy and use)
+- [x] Docker support
 - [ ] More setting options provided by original web interface
 
 # Demo
@@ -21,25 +22,23 @@ TRUI is a Web UI designed for [Transmission](https://github.com/transmission/tra
 
 # Installation
 
-1. We provide a [Dockerfile](https://github.com/noobly314/trui/blob/master/docker/Dockerfile), for running configured Nginx service. Please make sure port 80 is not occupied before running container.
+### 1. Docker (recommend)
 
-Build:
-
-```
-docker build . -t "trui:latest"
-```
-
-Run:
+If you are going to run only one web service (trui), you may like to use pre-configured docker image.
 
 ```
+docker pull mark314/trui
+
 docker run  -d \
 	--network="host" \
 	--restart always \
 	--name trui \
-	trui:latest
+	mark314/trui:latest
 ```
 
-2. You can also download latest [release](https://github.com/noobly314/trui/releases/latest) and extract it into the directory where you will serve static files. Serve trui static files with Nginx, Apache or whatever you like. Setup reverse proxy for transmission-daemon rpc service.
+### 2. Serve static files on your own
+
+You can also download latest [release](https://github.com/noobly314/trui/releases/latest) and extract it into the directory where you will serve static files. Serve trui static files with Nginx, Apache or whatever you like. Setup reverse proxy for transmission-daemon rpc service.
 
 <details>
 <summary>Nginx Configuration Example (click to open)</summary>

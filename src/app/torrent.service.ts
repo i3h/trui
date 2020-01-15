@@ -10,11 +10,15 @@ export class TorrentService {
   constructor(private globalService: GlobalService) {}
 
   getGlobalStats(torrents: any) {
-    let stats = { fileNum: 0, rateColor: "", rateText: "" };
+    let stats = {
+      fileNum: 0,
+      rateColor: "",
+      rateText: "",
+      filterNameOfProvider: []
+    };
     stats.fileNum = torrents.length;
     stats.rateColor = this.setGlobalRateColor(torrents);
     stats.rateText = this.setGlobalRateText(torrents);
-    stats.filterNameOfProvider = [];
     for (let i = 0; i < torrents.length; i++) {
       for (let j = 0; j < torrents[i].sbFilterName.length; j++) {
         if (!this.filterNameOfCommon.includes(torrents[i].sbFilterName[j])) {
