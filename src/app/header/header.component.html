@@ -81,7 +81,42 @@
       </div>
 
       <a class="navbar-item">
-        <app-filter [filterGroup]="filterGroup"></app-filter>
+        <div
+          class="dropdown"
+          [ngClass]="openFilter ? 'is-active' : ''"
+          (click)="onClickFilter()"
+        >
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu"
+            >
+              <span>{{ filterName }}</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu" role="menu">
+            <div class="dropdown-content">
+              <a class="dropdown-item" (click)="onSelectFilter('All')">
+                All
+              </a>
+              <hr class="dropdown-divider" />
+              <a class="dropdown-item" (click)="onSelectFilter('Downloading')">
+                Downloading
+              </a>
+              <a class="dropdown-item" (click)="onSelectFilter('Seeding')">
+                Seeding
+              </a>
+              <a class="dropdown-item" (click)="onSelectFilter('Stopped')">
+                Stopped
+              </a>
+              <hr class="dropdown-divider" />
+            </div>
+          </div>
+        </div>
       </a>
     </div>
 

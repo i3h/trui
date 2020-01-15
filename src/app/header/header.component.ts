@@ -18,9 +18,11 @@ import { DataService } from "../data.service";
 export class HeaderComponent implements OnInit {
   isMobile: boolean = window.innerWidth < 1024;
   @Output() action = new EventEmitter<any>();
+  @Output() filter = new EventEmitter<any>();
   @Input() globalStats: any;
   @Input() openMenu: boolean;
-  @Input() filterGroup: string;
+  @Input() filterName: string;
+  openFilter: boolean = false;
 
   constructor(
     private globalService: GlobalService,
@@ -49,6 +51,15 @@ export class HeaderComponent implements OnInit {
 
   onClickAbout() {
     this.action.emit("about");
+  }
+
+  onClickFilter() {
+    this.openFilter = !this.openFilter;
+  }
+
+  onSelectFilter(g) {
+    this.filterName = g;
+    this.filter.emit(g);
   }
 
   ngOnInit() {}

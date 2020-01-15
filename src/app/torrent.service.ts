@@ -15,6 +15,22 @@ export class TorrentService {
     return stats;
   }
 
+  addMoreAttr(torrent: any) {
+    let t = torrent;
+    t = this.setCheckStatus(t);
+    t = this.setStatusText(t);
+    t = this.setSizeText(t);
+    t = this.setUploadedEver(t);
+    t = this.setUploadRatio(t);
+    t = this.setProgressValue(t);
+    t = this.setProgressText(t);
+    t = this.setProgressColor(t);
+    t = this.setStatusColor(t);
+    t = this.setRateText(t);
+    t = this.setFilterName(t);
+    return t;
+  }
+
   setGlobalRateColor(torrents: any) {
     let d = 0;
     let u = 0;
@@ -43,22 +59,7 @@ export class TorrentService {
     return rateText;
   }
 
-  addMoreAttr(torrent: any) {
-    let t = torrent;
-    t = this.setCheckStatus(t);
-    t = this.setStatusCode(t);
-    t = this.setSizeText(t);
-    t = this.setUploadedEver(t);
-    t = this.setUploadRatio(t);
-    t = this.setProgressValue(t);
-    t = this.setProgressText(t);
-    t = this.setProgressColor(t);
-    t = this.setStatusColor(t);
-    t = this.setRateText(t);
-    return t;
-  }
-
-  setStatusCode(torrent: any) {
+  setStatusText(torrent: any) {
     let t = torrent;
     if (t.status == 0) {
       t.sbStatus = "Stopped";
@@ -172,6 +173,22 @@ export class TorrentService {
     }
     t.sbRateText = "D " + this.addUnit(t.rateDownload) + "/s";
     t.sbRateText += " | U " + this.addUnit(t.rateUpload) + "/s";
+    return t;
+  }
+
+  setFilterName(torrent: any) {
+    let t = torrent;
+    t.sbFilterName = ["All", t.sbStatus];
+    return t;
+  }
+
+  filter(torrents: any, filter: string) {
+    let t = [];
+    for (let i = 0; i < torrents.length; i++) {
+      if (torrents[i].sbFilterName.includes(filter)) {
+        t.push(torrents[i]);
+      }
+    }
     return t;
   }
 }

@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   shortList: boolean;
   focusID: string;
   isCheckAll: boolean;
-  filterGroup: string = "All";
+  filterName: string;
 
   constructor(
     private router: Router,
@@ -41,6 +41,13 @@ export class AppComponent implements OnInit {
   onFireAction(e) {
     console.log(e);
     this.action = e;
+  }
+
+  onFireFilter(e) {
+    console.log(e);
+    this.filterName = e;
+    window.localStorage.setItem("filterName", e);
+    location.reload();
   }
 
   onEndAction(e) {
@@ -92,6 +99,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    // set filter name
+    this.filterName = window.localStorage.getItem("filterName");
+    this.filterName = null ? "All" : this.filterName;
+    // fetch torrents data
     this.dataService.rpc().subscribe(res => {
       if (res.ok == false && res.status != 409) {
         console.log(res);
@@ -106,6 +117,11 @@ export class AppComponent implements OnInit {
                 this.torrents[i]
               );
             }
+            //console.log(this.torrents);
+            this.torrents = this.torrentService.filter(
+              this.torrents,
+              this.filterName
+            );
             this.globalStats = this.torrentService.getGlobalStats(
               this.torrents
             );

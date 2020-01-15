@@ -2,8 +2,9 @@
 <div *ngIf="!isMobile" class="wrapper">
   <app-header
     [globalStats]="globalStats"
-    [filterGroup]="filterGroup"
+    [filterName]="filterName"
     (action)="onFireAction($event)"
+    (filter)="onFireFilter($event)"
   ></app-header>
   <app-actions
     [torrents]="torrents"
