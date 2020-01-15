@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   isRPCOK: boolean;
   rpcErrMsg: string;
   openInfo: boolean;
-  openMenu: boolean;
   shortList: boolean;
   focusID: string;
   isCheckAll: boolean;
@@ -92,10 +91,6 @@ export class AppComponent implements OnInit {
     this.openInfo = false;
     this.shortList = false;
     this.focusID = null;
-  }
-
-  onOpenMenu() {
-    this.openMenu = !this.openMenu;
   }
 
   ngOnInit() {

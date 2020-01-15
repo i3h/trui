@@ -48,9 +48,9 @@
 <div *ngIf="isMobile" class="wrapper">
   <app-header
     [globalStats]="globalStats"
+    [filterName]="filterName"
     (action)="onFireAction($event)"
-    [openMenu]="openMenu"
-    (click)="onOpenMenu()"
+    (filter)="onFireFilter($event)"
   ></app-header>
   <app-actions
     [torrents]="torrents"

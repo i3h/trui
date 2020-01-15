@@ -20,8 +20,8 @@ export class HeaderComponent implements OnInit {
   @Output() action = new EventEmitter<any>();
   @Output() filter = new EventEmitter<any>();
   @Input() globalStats: any;
-  @Input() openMenu: boolean;
   @Input() filterName: string;
+  openMenu: boolean = false;
   openFilter: boolean = false;
 
   constructor(
@@ -51,6 +51,10 @@ export class HeaderComponent implements OnInit {
 
   onClickAbout() {
     this.action.emit("about");
+  }
+
+  onClickMenu() {
+    this.openMenu = !this.openMenu;
   }
 
   onClickFilter() {
