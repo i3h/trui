@@ -114,6 +114,15 @@
                 Stopped
               </a>
               <hr class="dropdown-divider" />
+              <div *ngIf="globalStats">
+                <a
+                  *ngFor="let el of globalStats.filterNameOfProvider"
+                  class="dropdown-item"
+                  (click)="onSelectFilter(el)"
+                >
+                  {{ el }}
+                </a>
+              </div>
             </div>
           </div>
         </div>

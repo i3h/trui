@@ -5,6 +5,8 @@ import { GlobalService } from "./global.service";
   providedIn: "root"
 })
 export class TorrentService {
+  filterNameOfCommon = ["All", "Downloading", "Seeding", "Stopped"];
+
   constructor(private globalService: GlobalService) {}
 
   getGlobalStats(torrents: any) {
@@ -12,6 +14,18 @@ export class TorrentService {
     stats.fileNum = torrents.length;
     stats.rateColor = this.setGlobalRateColor(torrents);
     stats.rateText = this.setGlobalRateText(torrents);
+    stats.filterNameOfProvider = [];
+    for (let i = 0; i < torrents.length; i++) {
+      for (let j = 0; j < torrents[i].sbFilterName.length; j++) {
+        if (!this.filterNameOfCommon.includes(torrents[i].sbFilterName[j])) {
+          if (
+            !stats.filterNameOfProvider.includes(torrents[i].sbFilterName[j])
+          ) {
+            stats.filterNameOfProvider.push(torrents[i].sbFilterName[j]);
+          }
+        }
+      }
+    }
     return stats;
   }
 
@@ -178,7 +192,9 @@ export class TorrentService {
 
   setFilterName(torrent: any) {
     let t = torrent;
-    t.sbFilterName = ["All", t.sbStatus];
+    let url = new URL(t.trackers[0].announce);
+    let provider = url.hostname;
+    t.sbFilterName = ["All", t.sbStatus, provider];
     return t;
   }
 

@@ -117,13 +117,12 @@ export class AppComponent implements OnInit {
                 this.torrents[i]
               );
             }
-            //console.log(this.torrents);
+            this.globalStats = this.torrentService.getGlobalStats(
+              this.torrents
+            );
             this.torrents = this.torrentService.filter(
               this.torrents,
               this.filterName
-            );
-            this.globalStats = this.torrentService.getGlobalStats(
-              this.torrents
             );
           }
         });
