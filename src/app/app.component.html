@@ -2,6 +2,7 @@
 <div *ngIf="!isMobile" class="wrapper">
   <app-header
     [globalStats]="globalStats"
+    [filterGroup]="filterGroup"
     (action)="onFireAction($event)"
   ></app-header>
   <app-actions

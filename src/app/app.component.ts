@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   shortList: boolean;
   focusID: string;
   isCheckAll: boolean;
+  filterGroup: string = "All";
 
   constructor(
     private router: Router,

@@ -79,6 +79,10 @@
           </a>
         </div>
       </div>
+
+      <a class="navbar-item">
+        <app-filter [filterGroup]="filterGroup"></app-filter>
+      </a>
     </div>
 
     <div *ngIf="!isMobile" class="navbar-end">

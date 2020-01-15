@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   @Output() action = new EventEmitter<any>();
   @Input() globalStats: any;
   @Input() openMenu: boolean;
+  @Input() filterGroup: string;
 
   constructor(
     private globalService: GlobalService,

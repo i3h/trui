@@ -29,6 +29,7 @@ import { FilesComponent } from "./info/files/files.component";
 import { SettingRPCComponent } from "./actions/setting/setting-rpc/setting-rpc.component";
 import { AboutComponent } from "./actions/about/about.component";
 import { ActionsComponent } from "./actions/actions.component";
+import { FilterComponent } from './filter/filter.component';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -55,7 +56,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     FilesComponent,
     SettingRPCComponent,
     AboutComponent,
-    ActionsComponent
+    ActionsComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
