@@ -46,7 +46,7 @@ jobs:
           asset_name: trui.tar.gz
           asset_content_type: application/gzip
       # publish to docker hub
-      - uses: elgohr/Publish-Docker-Github-Action@master
+      - uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: mark314/trui
           username: ${{ secrets.DOCKER_USERNAME }}
